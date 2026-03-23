@@ -7,7 +7,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
 const articleCards = computed(() => props.items)
 </script>
 
@@ -24,16 +23,16 @@ const articleCards = computed(() => props.items)
     <div class="article-list">
       <article
         v-for="article in articleCards"
-        :key="article.title"
+        :key="article.title.zh"
         class="article-card"
       >
         <p class="article-meta">
           <span>{{ article.publishDate }}</span>
-          <span>{{ article.readingTime }}</span>
+          <span>{{ article.readingTime.zh }}</span>
         </p>
-        <h3 class="article-title">{{ article.title }}</h3>
-        <p class="article-summary">{{ article.summary }}</p>
-        <a class="article-link" :href="article.href">Read article</a>
+        <h3 class="article-title">{{ article.title.zh }}</h3>
+        <p class="article-summary">{{ article.summary.zh }}</p>
+        <a class="article-link" :href="article.href">閱讀文章</a>
       </article>
     </div>
   </section>

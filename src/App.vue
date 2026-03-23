@@ -8,8 +8,11 @@ import {
   watch,
 } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useLanguage } from './composables/useLanguage'
+import { siteCopy } from './data/siteContent'
 
 const route = useRoute()
+const { locale, toggleLanguage } = useLanguage()
 const isMenuOpen = shallowRef(false)
 const isScrolled = shallowRef(false)
 const desktopNav = shallowRef<HTMLElement | null>(null)
@@ -17,12 +20,7 @@ const indicatorWidth = shallowRef(0)
 const indicatorOffset = shallowRef(0)
 const indicatorVisible = shallowRef(false)
 
-const navItems = [
-  { label: 'About me (關於我)', to: '/about', mark: '我' },
-  { label: 'Articles (技術分享文章)', to: '/articles', mark: '文' },
-  { label: 'Projects (作品集)', to: '/projects', mark: '作' },
-  { label: 'Interview (面試經驗)', to: '/interview', mark: '面' },
-]
+const navItems = computed(() => siteCopy.nav)
 
 const headerClasses = computed(() => ({
   'site-header-scrolled': isScrolled.value,
@@ -36,7 +34,7 @@ const desktopIndicatorStyle = computed(() => ({
 }))
 
 const currentMark = computed(() => {
-  const activeItem = navItems.find((item) => item.to === route.path)
+  const activeItem = navItems.value.find((item) => item.to === route.path)
   return activeItem?.mark ?? '我'
 })
 
@@ -113,38 +111,69 @@ onBeforeUnmount(() => {
           <span class="menu-toggle-line" :class="{ 'menu-toggle-line-bottom-open': isMenuOpen }" />
         </button>
 
-        <nav ref="desktopNav" class="site-nav site-nav-desktop" aria-label="Primary navigation">
-          <span class="site-nav-indicator" :style="desktopIndicatorStyle" />
-          <RouterLink
-            v-for="item in navItems"
-            :key="item.to"
-            class="site-nav-link"
-            :class="{ 'site-nav-link-active': route.path === item.to }"
-            :to="item.to"
+        <div class="site-header-actions">
+          <nav ref="desktopNav" class="site-nav site-nav-desktop" aria-label="Primary navigation">
+            <span class="site-nav-indicator" :style="desktopIndicatorStyle" />
+            <RouterLink
+              v-for="item in navItems"
+              :key="item.to"
+              class="site-nav-link"
+              :class="{ 'site-nav-link-active': route.path === item.to }"
+              :to="item.to"
+            >
+              {{ item.label.zh }}
+            </RouterLink>
+          </nav>
+
+          <button
+            class="language-toggle"
+            type="button"
+            :aria-label="siteCopy.languageSwitch.label.zh"
+            @click="toggleLanguage"
           >
-            {{ item.label }}
-          </RouterLink>
-        </nav>
+            <span class="language-pill" :class="{ 'language-pill-active': locale === 'zh' }">
+              {{ siteCopy.languageSwitch.zh }}
+            </span>
+            <span class="language-pill" :class="{ 'language-pill-active': locale === 'en' }">
+              {{ siteCopy.languageSwitch.en }}
+            </span>
+          </button>
+        </div>
       </div>
 
       <transition name="mobile-nav">
-        <nav
-          v-if="isMenuOpen"
-          id="primary-navigation"
-          class="site-nav-mobile"
-          aria-label="Mobile primary navigation"
-        >
-          <RouterLink
-            v-for="item in navItems"
-            :key="item.to"
-            class="site-nav-mobile-link"
-            :class="{ 'site-nav-mobile-link-active': route.path === item.to }"
-            :to="item.to"
-            @click="closeMenu"
+        <div v-if="isMenuOpen" class="mobile-panel">
+          <button
+            class="language-toggle language-toggle-mobile"
+            type="button"
+            :aria-label="siteCopy.languageSwitch.label.zh"
+            @click="toggleLanguage"
           >
-            {{ item.label }}
-          </RouterLink>
-        </nav>
+            <span class="language-pill" :class="{ 'language-pill-active': locale === 'zh' }">
+              {{ siteCopy.languageSwitch.zh }}
+            </span>
+            <span class="language-pill" :class="{ 'language-pill-active': locale === 'en' }">
+              {{ siteCopy.languageSwitch.en }}
+            </span>
+          </button>
+
+          <nav
+            id="primary-navigation"
+            class="site-nav-mobile"
+            aria-label="Mobile primary navigation"
+          >
+            <RouterLink
+              v-for="item in navItems"
+              :key="item.to"
+              class="site-nav-mobile-link"
+              :class="{ 'site-nav-mobile-link-active': route.path === item.to }"
+              :to="item.to"
+              @click="closeMenu"
+            >
+              {{ item.label.zh }}
+            </RouterLink>
+          </nav>
+        </div>
       </transition>
     </header>
 
@@ -191,6 +220,12 @@ onBeforeUnmount(() => {
     border-color 220ms ease;
 }
 
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .site-header-scrolled {
   padding-top: 0.45rem;
 }
@@ -214,8 +249,7 @@ onBeforeUnmount(() => {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, #1c756a, #103e39 72%);
+  background: radial-gradient(circle at 30% 30%, #1c756a, #103e39 72%);
   color: #fff7ed;
   text-decoration: none;
   font-weight: 700;
@@ -232,7 +266,6 @@ onBeforeUnmount(() => {
   display: inline-block;
   font-size: 1.05rem;
   line-height: 1;
-  transition: transform 220ms ease, opacity 220ms ease;
 }
 
 .site-nav {
@@ -259,10 +292,7 @@ onBeforeUnmount(() => {
   border-radius: 999px;
   background: linear-gradient(135deg, #154d46, #103e39);
   box-shadow: 0 10px 20px rgba(15, 92, 83, 0.18);
-  transition:
-    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 180ms ease;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), width 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 180ms ease;
   z-index: 0;
   pointer-events: none;
 }
@@ -276,10 +306,7 @@ onBeforeUnmount(() => {
   text-decoration: none;
   font-size: 0.95rem;
   line-height: 1;
-  transition:
-    color 180ms ease,
-    transform 220ms ease,
-    font-weight 180ms ease;
+  transition: color 180ms ease, transform 220ms ease, font-weight 180ms ease;
 }
 
 .site-nav-link:hover {
@@ -292,6 +319,37 @@ onBeforeUnmount(() => {
   color: #fff7ed;
   font-weight: 700;
   transform: scale(1.045);
+}
+
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.3rem;
+  border: 1px solid rgba(16, 62, 57, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 10px 22px rgba(73, 48, 20, 0.08);
+  cursor: pointer;
+}
+
+.language-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  min-height: 2.3rem;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  color: #31534f;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.language-pill-active {
+  background: #103e39;
+  color: #fff7ed;
 }
 
 .menu-toggle {
@@ -345,6 +403,15 @@ onBeforeUnmount(() => {
   transform: translateY(0) rotate(-45deg) !important;
 }
 
+.mobile-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.language-toggle-mobile {
+  justify-self: start;
+}
+
 .site-nav-mobile {
   display: grid;
   gap: 0.55rem;
@@ -395,7 +462,12 @@ onBeforeUnmount(() => {
     border-radius: 28px;
   }
 
-  .site-nav-desktop {
+  .site-header-actions {
+    margin-left: auto;
+  }
+
+  .site-nav-desktop,
+  .site-header-actions > .language-toggle {
     display: none;
   }
 

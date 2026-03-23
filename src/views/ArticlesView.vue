@@ -1,6 +1,6 @@
 ﻿<script setup lang="ts">
-import ArticlesSection from '../components/sections/ArticlesSection.vue'
 import { articles } from '../data/siteContent'
+import ArticlesSection from '../components/sections/ArticlesSection.vue'
 </script>
 
 <template>

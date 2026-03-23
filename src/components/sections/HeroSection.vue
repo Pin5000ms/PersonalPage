@@ -1,41 +1,52 @@
 ﻿<script setup lang="ts">
-import type { LinkItem } from '../../data/siteContent'
+import { computed } from 'vue'
+import { useLanguage } from '../../composables/useLanguage'
+import type { LinkItem, LocalizedText } from '../../data/siteContent'
 
 interface Props {
-  name: string
-  title: string
-  intro: string
-  mission: string
+  name: LocalizedText
+  title: LocalizedText
+  intro: LocalizedText
+  mission: LocalizedText
   primaryLink: LinkItem
   secondaryLink: LinkItem
-  focusPoints: string[]
+  focusPoints: LocalizedText[]
+  kicker: LocalizedText
+  panelLabel: LocalizedText
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+const { locale } = useLanguage()
+
+function t(text: LocalizedText) {
+  return text[locale.value]
+}
+
+const localizedFocusPoints = computed(() => props.focusPoints.map((point) => t(point)))
 </script>
 
 <template>
   <section class="hero">
     <div class="hero-copy">
-      <p class="hero-kicker">Personal brand and technical writing</p>
-      <h1 class="hero-title">{{ name }}</h1>
-      <p class="hero-role">{{ title }}</p>
-      <p class="hero-intro">{{ intro }}</p>
-      <p class="hero-mission">{{ mission }}</p>
+      <p class="hero-kicker">{{ t(kicker) }}</p>
+      <h1 class="hero-title">{{ t(name) }}</h1>
+      <p class="hero-role">{{ t(title) }}</p>
+      <p class="hero-intro">{{ t(intro) }}</p>
+      <p class="hero-mission">{{ t(mission) }}</p>
       <div class="hero-actions">
         <a class="hero-link hero-link-primary" :href="primaryLink.href">
-          {{ primaryLink.label }}
+          {{ t(primaryLink.label) }}
         </a>
         <a class="hero-link hero-link-secondary" :href="secondaryLink.href">
-          {{ secondaryLink.label }}
+          {{ t(secondaryLink.label) }}
         </a>
       </div>
     </div>
     <div class="hero-panel">
-      <p class="hero-panel-label">Current focus</p>
+      <p class="hero-panel-label">{{ t(panelLabel) }}</p>
       <ul class="hero-points">
         <li
-          v-for="point in focusPoints"
+          v-for="point in localizedFocusPoints"
           :key="point"
           class="hero-point"
         >

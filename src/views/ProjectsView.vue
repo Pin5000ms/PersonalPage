@@ -1,19 +1,36 @@
 ﻿<script setup lang="ts">
+import { computed } from 'vue'
 import PortfolioSection from '../components/sections/PortfolioSection.vue'
-import { projects } from '../data/siteContent'
+import { useLanguage } from '../composables/useLanguage'
+import { projects, siteCopy } from '../data/siteContent'
+
+const { locale } = useLanguage()
+
+function t(text: { zh: string; en: string }) {
+  return text[locale.value]
+}
+
+const pageCopy = computed(() => siteCopy.projectsPage)
+const sectionCopy = computed(() => siteCopy.projectsSection)
 </script>
 
 <template>
   <div class="view-shell">
     <section class="page-intro">
-      <p class="page-kicker">Projects overview</p>
-      <h1 class="page-title">作品集</h1>
-      <p class="page-description">
-        這一頁聚焦我做過的前端專案，包含定位、成果、技術選型與後續可延伸的方向。
-      </p>
+      <p class="page-kicker">{{ t(pageCopy.kicker) }}</p>
+      <h1 class="page-title">{{ t(pageCopy.title) }}</h1>
+      <p class="page-description">{{ t(pageCopy.description) }}</p>
     </section>
 
-    <PortfolioSection :items="projects" />
+    <PortfolioSection
+      :items="projects"
+      :kicker="sectionCopy.kicker"
+      :title="sectionCopy.title"
+      :description="sectionCopy.description"
+      :drag-hint="sectionCopy.dragHint"
+      :auto-scrolling-label="sectionCopy.autoScrolling"
+      :paused-label="sectionCopy.paused"
+    />
   </div>
 </template>
 

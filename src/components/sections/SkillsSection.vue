@@ -1,13 +1,25 @@
 ﻿<script setup lang="ts">
 import { computed, useTemplateRef } from 'vue'
+import { useLanguage } from '../../composables/useLanguage'
 import { useAutoScrollTrack } from '../../composables/useAutoScrollTrack'
-import type { SkillItem } from '../../data/siteContent'
+import type { LocalizedText, SkillItem } from '../../data/siteContent'
 
 interface Props {
   items: SkillItem[]
+  kicker: LocalizedText
+  title: LocalizedText
+  description: LocalizedText
+  dragHint: LocalizedText
+  autoScrollingLabel: LocalizedText
+  pausedLabel: LocalizedText
 }
 
 const props = defineProps<Props>()
+const { locale } = useLanguage()
+
+function t(text: LocalizedText) {
+  return text[locale.value]
+}
 
 const skillCards = computed(() => props.items)
 const skillTrack = useTemplateRef<HTMLElement>('skillTrack')
@@ -23,10 +35,10 @@ const {
 <template>
   <section class="skills" id="skills">
     <div class="section-heading">
-      <p class="section-kicker">What I can help with</p>
-      <h2 class="section-title">技能不只是列清單，也要能支撐作品與內容輸出</h2>
+      <p class="section-kicker">{{ t(kicker) }}</p>
+      <h2 class="section-title">{{ t(title) }}</h2>
       <p class="section-description">
-        這一區聚焦的是你真正想被記住的能力，而不是把所有用過的工具一次堆上來。
+        {{ t(description) }}
       </p>
     </div>
 
@@ -43,11 +55,11 @@ const {
     >
       <article
         v-for="skill in skillCards"
-        :key="skill.title"
+        :key="t(skill.title)"
         class="skill-card"
       >
-        <h3 class="skill-title">{{ skill.title }}</h3>
-        <p class="skill-summary">{{ skill.summary }}</p>
+        <h3 class="skill-title">{{ t(skill.title) }}</h3>
+        <p class="skill-summary">{{ t(skill.summary) }}</p>
         <ul class="skill-tags">
           <li v-for="tag in skill.tags" :key="tag" class="skill-tag">
             {{ tag }}
@@ -57,9 +69,9 @@ const {
     </div>
 
     <p v-if="canScrollSkills" class="track-hint">
-      向右滑動查看更多技能
+      {{ t(dragHint) }}
       <span class="track-status">
-        {{ isAutoScrollingSkills ? 'Auto scrolling' : 'Paused for browsing' }}
+        {{ isAutoScrollingSkills ? t(autoScrollingLabel) : t(pausedLabel) }}
       </span>
     </p>
   </section>

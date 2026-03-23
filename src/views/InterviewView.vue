@@ -18,16 +18,16 @@ import { interviews } from '../data/siteContent'
         :key="`${item.company}-${item.year}`"
         class="interview-card"
       >
-        <p class="interview-meta">{{ item.year }} · {{ item.role }}</p>
+        <p class="interview-meta">{{ item.year }} · {{ item.role.zh }}</p>
         <h2 class="interview-company">{{ item.company }}</h2>
-        <p class="interview-summary">{{ item.summary }}</p>
+        <p class="interview-summary">{{ item.summary.zh }}</p>
         <ul class="interview-takeaways">
           <li
             v-for="takeaway in item.takeaways"
-            :key="takeaway"
+            :key="takeaway.zh"
             class="interview-takeaway"
           >
-            {{ takeaway }}
+            {{ takeaway.zh }}
           </li>
         </ul>
       </article>

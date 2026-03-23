@@ -1,13 +1,25 @@
 ﻿<script setup lang="ts">
 import { computed, useTemplateRef } from 'vue'
+import { useLanguage } from '../../composables/useLanguage'
 import { useAutoScrollTrack } from '../../composables/useAutoScrollTrack'
-import type { ProjectItem } from '../../data/siteContent'
+import type { LocalizedText, ProjectItem } from '../../data/siteContent'
 
 interface Props {
   items: ProjectItem[]
+  kicker: LocalizedText
+  title: LocalizedText
+  description: LocalizedText
+  dragHint: LocalizedText
+  autoScrollingLabel: LocalizedText
+  pausedLabel: LocalizedText
 }
 
 const props = defineProps<Props>()
+const { locale } = useLanguage()
+
+function t(text: LocalizedText) {
+  return text[locale.value]
+}
 
 const projectCards = computed(() => props.items)
 const projectTrack = useTemplateRef<HTMLElement>('projectTrack')
@@ -24,10 +36,10 @@ const {
 <template>
   <section class="portfolio" id="portfolio">
     <div class="section-heading">
-      <p class="section-kicker">Selected work</p>
-      <h2 class="section-title">把做過的事說清楚，比只列技術名詞更有說服力</h2>
+      <p class="section-kicker">{{ t(kicker) }}</p>
+      <h2 class="section-title">{{ t(title) }}</h2>
       <p class="section-description">
-        每個專案都用「做了什麼、為什麼這樣做、最後帶來什麼結果」來呈現，讓讀者能快速理解你的價值。
+        {{ t(description) }}
       </p>
     </div>
 
@@ -44,25 +56,25 @@ const {
     >
       <article
         v-for="project in projectCards"
-        :key="project.title"
+        :key="t(project.title)"
         class="project-card"
       >
         <div class="project-head">
-          <p class="project-category">{{ project.category }}</p>
-          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-category">{{ t(project.category) }}</p>
+          <h3 class="project-title">{{ t(project.title) }}</h3>
         </div>
 
-        <p class="project-summary">{{ project.summary }}</p>
-        <p class="project-outcome">{{ project.outcome }}</p>
+        <p class="project-summary">{{ t(project.summary) }}</p>
+        <p class="project-outcome">{{ t(project.outcome) }}</p>
 
         <dl class="project-metrics">
           <div
             v-for="metric in project.metrics"
-            :key="metric.label"
+            :key="t(metric.label)"
             class="project-metric"
           >
-            <dt class="project-metric-label">{{ metric.label }}</dt>
-            <dd class="project-metric-value">{{ metric.value }}</dd>
+            <dt class="project-metric-label">{{ t(metric.label) }}</dt>
+            <dd class="project-metric-value">{{ t(metric.value) }}</dd>
           </div>
         </dl>
 
@@ -75,22 +87,22 @@ const {
         <div class="project-links">
           <a
             v-for="link in project.links"
-            :key="link.label"
+            :key="`${t(link.label)}-${link.href}`"
             class="project-link"
             :href="link.href"
             :target="link.href.startsWith('http') ? '_blank' : undefined"
             :rel="link.href.startsWith('http') ? 'noreferrer' : undefined"
           >
-            {{ link.label }}
+            {{ t(link.label) }}
           </a>
         </div>
       </article>
     </div>
 
     <p v-if="canScrollProjects" class="track-hint">
-      向右滑動查看更多作品
+      {{ t(dragHint) }}
       <span class="track-status">
-        {{ isAutoScrollingProjects ? 'Auto scrolling' : 'Paused for browsing' }}
+        {{ isAutoScrollingProjects ? t(autoScrollingLabel) : t(pausedLabel) }}
       </span>
     </p>
   </section>
