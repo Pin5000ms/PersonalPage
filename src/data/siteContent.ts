@@ -270,18 +270,18 @@ export const profile = {
 export const contactInfo: ContactInfoItem[] = [
   {
     label: 'Email',
-    value: 'tom0917952503@gmail.com',
-    href: 'mailto:tom0917952503@gmail.com',
+    value: 'tomchang@gmail.com',
+    href: 'mailto:tomchang@gmail.com',
   },
   {
     label: 'GitHub',
     value: 'github.com/tomchang',
-    href: 'https://github.com/Pin5000ms',
+    href: '',
   },
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/tomchang',
-    href: 'https://www.linkedin.com/in/tingyu-chang-742971140/',
+    href: '',
   },
 ]
 
@@ -376,7 +376,7 @@ export const projects: ProjectItem[] = [
     coverImageTone: 'copper',
     detailImageSrc: project2Detail01,
     detailImageAlt: {
-      zh: 'PCB 元件偵測結果 2',
+      zh: 'PCB 元件偵測結果',
       en: 'PCB component detection result 2',
     },
     stack: ['Python', 'YOLOv11', 'Object Detection', 'Computer Vision', 'PCB Inspection'],
