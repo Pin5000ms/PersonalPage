@@ -37,6 +37,8 @@ export interface ArticleItem {
   publishDate: string
   readingTime: LocalizedText
   href: string
+  imageLabel: LocalizedText
+  imageTone: string
 }
 
 export interface InterviewItem {
@@ -45,6 +47,14 @@ export interface InterviewItem {
   year: string
   summary: LocalizedText
   takeaways: LocalizedText[]
+  imageLabel: LocalizedText
+  imageTone: string
+}
+
+export interface ContactInfoItem {
+  label: string
+  value: string
+  href: string
 }
 
 export interface SiteCopy {
@@ -74,6 +84,12 @@ export interface SiteCopy {
     title: LocalizedText
     description: LocalizedText
   }
+  contactPage: {
+    kicker: LocalizedText
+    title: LocalizedText
+    description: LocalizedText
+    availability: LocalizedText
+  }
   hero: {
     kicker: LocalizedText
     panelLabel: LocalizedText
@@ -94,12 +110,6 @@ export interface SiteCopy {
     autoScrolling: LocalizedText
     paused: LocalizedText
   }
-  articlesSection: {
-    kicker: LocalizedText
-    title: LocalizedText
-    description: LocalizedText
-    readMore: LocalizedText
-  }
 }
 
 export const siteCopy: SiteCopy = {
@@ -108,6 +118,7 @@ export const siteCopy: SiteCopy = {
     { label: { zh: 'Articles (技術分享文章)', en: 'Articles' }, to: '/articles', mark: '文' },
     { label: { zh: 'Projects (作品集)', en: 'Projects' }, to: '/projects', mark: '作' },
     { label: { zh: 'Interview (面試經驗)', en: 'Interview' }, to: '/interview', mark: '面' },
+    { label: { zh: 'Contact me (聯絡我)', en: 'Contact me' }, to: '/contact', mark: '聯' },
   ],
   languageSwitch: {
     zh: '中文',
@@ -146,6 +157,18 @@ export const siteCopy: SiteCopy = {
       en: 'I keep interview practice notes and retrospectives here so I can refine my answer structure and capture recurring patterns.',
     },
   },
+  contactPage: {
+    kicker: { zh: 'Contact', en: 'Contact' },
+    title: { zh: '聯絡我', en: 'Contact me' },
+    description: {
+      zh: '如果你想聊前端工程、作品合作、內容企劃或面試機會，可以透過以下方式聯絡我。',
+      en: 'If you would like to talk about frontend engineering, collaboration, content planning, or interview opportunities, feel free to reach out through the channels below.',
+    },
+    availability: {
+      zh: '目前可接受外商面試、前端合作與技術內容交流。',
+      en: 'Currently open to international interviews, frontend collaboration, and technical content conversations.',
+    },
+  },
   hero: {
     kicker: { zh: '個人品牌與技術內容', en: 'Personal brand and technical writing' },
     panelLabel: { zh: '目前重點', en: 'Current focus' },
@@ -178,18 +201,6 @@ export const siteCopy: SiteCopy = {
     autoScrolling: { zh: '自動滑動中', en: 'Auto scrolling' },
     paused: { zh: '已暫停，方便閱讀', en: 'Paused for browsing' },
   },
-  articlesSection: {
-    kicker: { zh: 'Technical writing', en: 'Technical writing' },
-    title: {
-      zh: '從文章累積流量，再把信任轉成持續回訪',
-      en: 'Use technical writing to build trust and earn repeat visits',
-    },
-    description: {
-      zh: '技術文章會是作品集的延伸說明書，幫助讀者更理解你的思考方式與實作深度。',
-      en: 'Technical articles extend the portfolio by showing how I think, how I execute, and how deeply I understand the problems I solve.',
-    },
-    readMore: { zh: '閱讀文章', en: 'Read article' },
-  },
 }
 
 export const profile = {
@@ -208,8 +219,8 @@ export const profile = {
     href: '#/projects',
   },
   secondaryLink: {
-    label: { zh: '閱讀技術文章', en: 'Read articles' },
-    href: '#/articles',
+    label: { zh: '聯絡我', en: 'Contact me' },
+    href: '#/contact',
   },
   focusPoints: [
     {
@@ -226,6 +237,24 @@ export const profile = {
     },
   ],
 }
+
+export const contactInfo: ContactInfoItem[] = [
+  {
+    label: 'Email',
+    value: 'tom@example.com',
+    href: 'mailto:tom@example.com',
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/tomchang',
+    href: 'https://github.com/',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/tomchang',
+    href: 'https://www.linkedin.com/',
+  },
+]
 
 export const skills: SkillItem[] = [
   {
@@ -311,6 +340,8 @@ export const articles: ArticleItem[] = [
     publishDate: '2026-03-23',
     readingTime: { zh: '6 分鐘閱讀', en: '6 min read' },
     href: '#',
+    imageLabel: { zh: 'Vue + GitHub Pages 部署流程', en: 'Vue + GitHub Pages deployment flow' },
+    imageTone: 'sunrise',
   },
   {
     title: { zh: '技術文章怎麼寫，才更容易累積穩定流量', en: 'How to write technical articles that build consistent traffic' },
@@ -321,6 +352,8 @@ export const articles: ArticleItem[] = [
     publishDate: '2026-03-18',
     readingTime: { zh: '5 分鐘閱讀', en: '5 min read' },
     href: '#',
+    imageLabel: { zh: '內容策略與流量成長', en: 'Content strategy and traffic growth' },
+    imageTone: 'ocean',
   },
   {
     title: { zh: 'GitHub Pages 與 Vercel 怎麼選', en: 'How to choose between GitHub Pages and Vercel' },
@@ -331,6 +364,8 @@ export const articles: ArticleItem[] = [
     publishDate: '2026-03-10',
     readingTime: { zh: '4 分鐘閱讀', en: '4 min read' },
     href: '#',
+    imageLabel: { zh: '平台比較與選型', en: 'Platform comparison and trade-offs' },
+    imageTone: 'forest',
   },
 ]
 
@@ -348,6 +383,8 @@ export const interviews: InterviewItem[] = [
       { zh: '回答元件拆分時要帶出資料流與維護性', en: 'When discussing component splits, connect them to data flow and maintainability' },
       { zh: '部署經驗能增加工程完整度的說服力', en: 'Deployment experience strengthens the impression of engineering completeness' },
     ],
+    imageLabel: { zh: '模擬面試與回答結構', en: 'Mock interview and answer structure' },
+    imageTone: 'plum',
   },
   {
     company: 'Product UI Team Interview Practice',
@@ -362,5 +399,7 @@ export const interviews: InterviewItem[] = [
       { zh: '用案例說明設計與工程如何協作', en: 'Use examples to show how design and engineering collaborated' },
       { zh: '準備一套可重複使用的 STAR 回答結構', en: 'Prepare a reusable STAR-style structure for interview answers' },
     ],
+    imageLabel: { zh: '產品設計與工程協作', en: 'Product design and engineering collaboration' },
+    imageTone: 'copper',
   },
 ]

@@ -1,5 +1,20 @@
 ﻿<script setup lang="ts">
+import { computed } from 'vue'
+import ContentFeed from '../components/content/ContentFeed.vue'
 import { interviews } from '../data/siteContent'
+
+const contentItems = computed(() =>
+  interviews.map((item) => ({
+    title: { zh: `${item.company}`, en: item.company },
+    summary: item.summary,
+    meta: `${item.year} · ${item.role.zh}`,
+    href: '#',
+    imageLabel: item.imageLabel,
+    imageTone: item.imageTone,
+    bulletPoints: item.takeaways,
+    ctaLabel: '查看重點',
+  })),
+)
 </script>
 
 <template>
@@ -12,26 +27,7 @@ import { interviews } from '../data/siteContent'
       </p>
     </section>
 
-    <section class="interview-list">
-      <article
-        v-for="item in interviews"
-        :key="`${item.company}-${item.year}`"
-        class="interview-card"
-      >
-        <p class="interview-meta">{{ item.year }} · {{ item.role.zh }}</p>
-        <h2 class="interview-company">{{ item.company }}</h2>
-        <p class="interview-summary">{{ item.summary.zh }}</p>
-        <ul class="interview-takeaways">
-          <li
-            v-for="takeaway in item.takeaways"
-            :key="takeaway.zh"
-            class="interview-takeaway"
-          >
-            {{ takeaway.zh }}
-          </li>
-        </ul>
-      </article>
-    </section>
+    <ContentFeed :items="contentItems" />
   </div>
 </template>
 
@@ -63,45 +59,5 @@ import { interviews } from '../data/siteContent'
   margin: 1rem 0 0;
   color: #31534f;
   line-height: 1.8;
-}
-
-.interview-list {
-  display: grid;
-  gap: 1rem;
-}
-
-.interview-card {
-  padding: 1.5rem;
-  border: 1px solid rgba(8, 42, 38, 0.12);
-  border-radius: 28px;
-  background: rgba(255, 251, 246, 0.88);
-  box-shadow: 0 18px 38px rgba(91, 57, 24, 0.06);
-}
-
-.interview-meta {
-  margin: 0 0 0.5rem;
-  color: #8a4b22;
-  font-size: 0.9rem;
-}
-
-.interview-company {
-  margin: 0;
-  font-size: 1.45rem;
-}
-
-.interview-summary {
-  margin: 0.9rem 0 1rem;
-  color: #31534f;
-  line-height: 1.8;
-}
-
-.interview-takeaways {
-  margin: 0;
-  padding-left: 1.25rem;
-  color: #214340;
-}
-
-.interview-takeaway + .interview-takeaway {
-  margin-top: 0.55rem;
 }
 </style>

@@ -1,6 +1,19 @@
 ﻿<script setup lang="ts">
+import { computed } from 'vue'
+import ContentFeed from '../components/content/ContentFeed.vue'
 import { articles } from '../data/siteContent'
-import ArticlesSection from '../components/sections/ArticlesSection.vue'
+
+const contentItems = computed(() =>
+  articles.map((article) => ({
+    title: article.title,
+    summary: article.summary,
+    meta: `${article.publishDate} · ${article.readingTime.zh}`,
+    href: article.href,
+    imageLabel: article.imageLabel,
+    imageTone: article.imageTone,
+    ctaLabel: '閱讀文章',
+  })),
+)
 </script>
 
 <template>
@@ -13,7 +26,7 @@ import ArticlesSection from '../components/sections/ArticlesSection.vue'
       </p>
     </section>
 
-    <ArticlesSection :items="articles" />
+    <ContentFeed :items="contentItems" />
   </div>
 </template>
 
