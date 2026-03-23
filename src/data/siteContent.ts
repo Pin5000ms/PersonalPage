@@ -161,7 +161,7 @@ export const siteCopy: SiteCopy = {
     kicker: { zh: 'Technical writing', en: 'Technical writing' },
     title: { zh: '技術分享文章', en: 'Technical articles' },
     description: {
-      zh: '這裡收錄我把實作經驗整理成文章的內容，讓作品背後的思考、流程與取捨更完整地被看見。',
+      zh: '這裡收錄一些我覺得值得紀錄的技術文章。',
       en: 'Here I document implementation notes and technical write-ups so the thinking, trade-offs, and process behind my work are visible.',
     },
   },
@@ -169,7 +169,7 @@ export const siteCopy: SiteCopy = {
     kicker: { zh: 'Interview notes', en: 'Interview notes' },
     title: { zh: '面試經驗', en: 'Interview experience' },
     description: {
-      zh: '我把面試練習與回顧整理在這裡，方便之後持續累積自己的回答框架與經驗總結。',
+      zh: '我把以往面試的過程和經驗整理在這裡，希望能給準備面試的人帶來一些幫助。',
       en: 'I keep interview practice notes and retrospectives here so I can refine my answer structure and capture recurring patterns.',
     },
   },
@@ -181,7 +181,7 @@ export const siteCopy: SiteCopy = {
       en: 'If you would like to talk about frontend engineering, collaboration, content planning, or interview opportunities, feel free to reach out through the channels below.',
     },
     availability: {
-      zh: '目前在看新的工作機會、合作與技術內容交流。',
+      zh: '我目前在看新的工作機會、合作與技術內容交流。',
       en: 'Currently open to international interviews, frontend collaboration, and technical content conversations.',
     },
   },
