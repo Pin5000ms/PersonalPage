@@ -164,11 +164,11 @@ export const siteCopy: SiteCopy = {
     kicker: { zh: 'Contact', en: 'Contact' },
     title: { zh: '聯絡我', en: 'Contact me' },
     description: {
-      zh: '如果你想聊前端工程、作品合作、內容企劃或面試機會，可以透過以下方式聯絡我。',
+      zh: '如果你想聊作品合作、內容企劃或面試機會，可以從這邊找到我。',
       en: 'If you would like to talk about frontend engineering, collaboration, content planning, or interview opportunities, feel free to reach out through the channels below.',
     },
     availability: {
-      zh: '目前可接受外商面試、前端合作與技術內容交流。',
+      zh: '目前在看新的工作機會、合作與技術內容交流。',
       en: 'Currently open to international interviews, frontend collaboration, and technical content conversations.',
     },
   },

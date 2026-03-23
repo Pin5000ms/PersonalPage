@@ -19,6 +19,7 @@ const desktopNav = shallowRef<HTMLElement | null>(null)
 const indicatorWidth = shallowRef(0)
 const indicatorOffset = shallowRef(0)
 const indicatorVisible = shallowRef(false)
+const indicatorPadding = 10
 
 const navItems = computed(() => siteCopy.nav)
 
@@ -59,8 +60,8 @@ function syncDesktopIndicator() {
     return
   }
 
-  indicatorWidth.value = activeElement.offsetWidth
-  indicatorOffset.value = activeElement.offsetLeft
+  indicatorWidth.value = activeElement.offsetWidth + indicatorPadding * 2
+  indicatorOffset.value = Math.max(activeElement.offsetLeft - indicatorPadding, 0)
   indicatorVisible.value = true
 }
 
