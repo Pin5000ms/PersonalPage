@@ -1,0 +1,53 @@
+:root {
+  font-family: "IBM Plex Sans", "Noto Sans TC", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #143632;
+  background:
+    radial-gradient(circle at top left, rgba(255, 220, 176, 0.7), transparent 36%),
+    radial-gradient(circle at bottom right, rgba(150, 205, 191, 0.72), transparent 28%),
+    linear-gradient(180deg, #fff7ed 0%, #f8f1e7 52%, #f2eee8 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 92%);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+#app {
+  min-height: 100vh;
+}
