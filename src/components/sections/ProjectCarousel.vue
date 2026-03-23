@@ -292,13 +292,22 @@ onBeforeUnmount(() => {
 }
 
 .project-carousel {
+  border-radius: 28px;
+  border: 1px solid rgba(8, 42, 38, 0.12);
+  background: linear-gradient(180deg, rgba(255, 248, 239, 0.96), rgba(255, 255, 255, 0.82));
+  box-shadow: 0 18px 42px rgba(91, 57, 24, 0.08);
   overflow: hidden;
+  clip-path: inset(0 round 28px);
   height: 100%;
+  isolation: isolate;
 }
 
 .project-slider {
   display: flex;
   height: 100%;
+  min-width: 100%;
+  backface-visibility: hidden;
+  transform: translateZ(0);
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
@@ -310,10 +319,11 @@ onBeforeUnmount(() => {
   gap: 1rem;
   height: 100%;
   padding: 1rem;
-  border: 1px solid rgba(8, 42, 38, 0.12);
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 248, 239, 0.96), rgba(255, 255, 255, 0.82));
-  box-shadow: 0 18px 42px rgba(91, 57, 24, 0.08);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .project-preview {
@@ -323,6 +333,8 @@ onBeforeUnmount(() => {
   border-radius: 22px;
   border: 1px solid rgba(8, 42, 38, 0.1);
   background: linear-gradient(135deg, #e6f2ec 0%, #f7efe3 100%);
+  background-clip: padding-box;
+  isolation: isolate;
 }
 
 .project-preview-forest {
