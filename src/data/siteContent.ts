@@ -1,4 +1,7 @@
-﻿export type Locale = 'zh' | 'en'
+﻿
+import profileAvatar from '../assets/avatar.jpg'
+
+export type Locale = 'zh' | 'en'
 
 export interface LocalizedText {
   zh: string
@@ -129,8 +132,8 @@ export const siteCopy: SiteCopy = {
     kicker: { zh: 'Personal brand', en: 'Personal brand' },
     title: { zh: '關於我', en: 'About me' },
     description: {
-      zh: '這一頁會先讓面試官快速理解我是誰、我擅長什麼，以及我做過哪些代表性專案。',
-      en: 'This page helps interviewers quickly understand who I am, what I specialize in, and which projects best represent my work.',
+      zh: '我是誰，我在哪',
+      en: 'Who am I, Where am I?',
     },
   },
   projectsPage: {
@@ -170,7 +173,7 @@ export const siteCopy: SiteCopy = {
     },
   },
   hero: {
-    kicker: { zh: '個人品牌與技術內容', en: 'Personal brand and technical writing' },
+    kicker: { zh: 'Profile', en: 'Profile' },
     panelLabel: { zh: '目前重點', en: 'Current focus' },
   },
   skillsSection: {
@@ -188,14 +191,14 @@ export const siteCopy: SiteCopy = {
     paused: { zh: '已暫停，方便閱讀', en: 'Paused for browsing' },
   },
   projectsSection: {
-    kicker: { zh: 'Selected work', en: 'Selected work' },
+    kicker: { zh: 'Projects', en: 'Projects' },
     title: {
-      zh: '把做過的事說清楚，比只列技術名詞更有說服力',
+      zh: '這邊是我做過的一些專案',
       en: 'Clear project storytelling is more persuasive than listing technologies alone',
     },
     description: {
-      zh: '每個專案都用「做了什麼、為什麼這樣做、最後帶來什麼結果」來呈現，讓讀者能快速理解你的價值。',
-      en: 'Each project is framed by what I built, why I approached it that way, and what outcome it created so readers can quickly understand my value.',
+      zh: '每個專案都用「做了什麼、為什麼這樣做、最後帶來什麼結果」來呈現，盡量不說廢話。',
+      en: 'Each project is framed by what I built, why I approached it that way, and what outcome it created.',
     },
     dragHint: { zh: '向右滑動查看更多作品', en: 'Scroll right to explore more projects' },
     autoScrolling: { zh: '自動滑動中', en: 'Auto scrolling' },
@@ -205,14 +208,19 @@ export const siteCopy: SiteCopy = {
 
 export const profile = {
   name: { zh: 'Tom Chang', en: 'Tom Chang' },
+  avatarSrc: profileAvatar,
+  avatarAlt: {
+    zh: 'Tom Chang 的大頭貼',
+    en: 'Portrait of Tom Chang',
+  },
   title: { zh: '軟體工程師', en: 'Software Engineer' },
   intro: {
-    zh: '我用 Vue 打造清楚、可維護、能持續演進的前端體驗，並把實作過程整理成容易理解的技術內容。',
-    en: 'I build clear, maintainable, and scalable frontend experiences with Vue, then turn what I learn into technical content that is easy to understand.',
+    zh: '我是一位軟體工程師，專長於 Windows 桌面應用開發（C#、Python、C/C++、WPF），並具備 AI 應用的實務經驗。我的 AI 經驗包含使用 Python 與 PyTorch 建立深度學習模型、將 AI 整合進軟體系統，以及將 AI 解決方案部署到真實世界的應用場景中。',
+    en: 'I am a software engineer with expertise in Windows desktop development (C#, Python, C/C++, WPF) and practical experience in AI applications. My AI experience includes building deep-learning models with Python/PyTorch, integrating AI into software systems, and deploying AI solutions for real-world use cases.',
   },
   mission: {
-    zh: '這個網站會同時是作品集、技術部落格和個人品牌入口，目標是累積可信度、建立搜尋流量，再把流量轉成小額贊助與合作機會。',
-    en: 'This site serves as a portfolio, technical blog, and personal brand hub. The goal is to build credibility, attract search traffic, and eventually turn that attention into support and collaboration opportunities.',
+    zh: '過往的工作經驗讓我在電腦視覺、AI／深度學習、運動控制，以及自動化系統領域具備高度熟悉度與實作能力。',
+    en: 'My work experience has made me highly proficient in computer vision, AI / deep learning, motion control, and automation systems.',
   },
   primaryLink: {
     label: { zh: '查看作品集', en: 'View projects' },
@@ -241,18 +249,18 @@ export const profile = {
 export const contactInfo: ContactInfoItem[] = [
   {
     label: 'Email',
-    value: 'tom@example.com',
-    href: 'mailto:tom@example.com',
+    value: 'tom0917952503@gmail.com',
+    href: 'mailto:tom0917952503@gmail.com',
   },
   {
     label: 'GitHub',
     value: 'github.com/tomchang',
-    href: 'https://github.com/',
+    href: 'https://github.com/Pin5000ms',
   },
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/tomchang',
-    href: 'https://www.linkedin.com/',
+    href: 'https://www.linkedin.com/in/tingyu-chang-742971140/',
   },
 ]
 

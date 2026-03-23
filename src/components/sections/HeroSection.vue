@@ -5,6 +5,8 @@ import type { LinkItem, LocalizedText } from '../../data/siteContent'
 
 interface Props {
   name: LocalizedText
+  avatarSrc: string
+  avatarAlt: LocalizedText
   title: LocalizedText
   intro: LocalizedText
   mission: LocalizedText
@@ -90,11 +92,18 @@ onBeforeUnmount(() => {
   <section class="hero">
     <div class="hero-copy">
       <p class="hero-kicker">{{ t(kicker) }}</p>
-      <div class="hero-title-wrap">
-        <h1 class="hero-title">
-          <span>{{ typedText }}</span>
-          <span class="hero-caret" :class="{ 'hero-caret-hidden': !showCaret }">|</span>
-        </h1>
+      <div class="hero-heading">
+        <div class="hero-avatar-wrap">
+          <img class="hero-avatar" :src="avatarSrc" :alt="t(avatarAlt)" />
+        </div>
+        <div class="hero-title-wrap">
+          <div class="hero-title-copy">
+            <h1 class="hero-title">
+              <span>{{ typedText }}</span>
+              <span class="hero-caret" :class="{ 'hero-caret-hidden': !showCaret }">|</span>
+            </h1>
+          </div>
+        </div>
       </div>
       <p class="hero-role">{{ t(title) }}</p>
       <p class="hero-intro">{{ t(intro) }}</p>
@@ -158,9 +167,27 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
+.hero-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.hero-avatar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  border: 1px solid rgba(12, 30, 27, 0.1);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 252, 247, 0.92) 0%, rgba(247, 238, 225, 0.9) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
 .hero-title-wrap {
   position: relative;
-  margin: 0 0 0.3rem;
   padding: 1.35rem 1.35rem 1.65rem;
   border: 1px solid rgba(12, 30, 27, 0.18);
   border-radius: 22px;
@@ -170,12 +197,28 @@ onBeforeUnmount(() => {
     0 18px 30px rgba(16, 24, 24, 0.18);
 }
 
+.hero-title-copy {
+  min-width: 0;
+}
+
+.hero-avatar {
+  width: clamp(88px, 12vw, 122px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: #161b1b;
+}
+
 .hero-title {
   display: inline-block;
   margin: 0;
   padding-bottom: 0.08em;
   color: #f7f9f8;
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-size: clamp(1.7rem, 5vw, 3.8rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.04em;
@@ -258,6 +301,15 @@ onBeforeUnmount(() => {
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .hero-heading {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .hero-avatar-wrap {
+    width: fit-content;
   }
 
   .hero-title {

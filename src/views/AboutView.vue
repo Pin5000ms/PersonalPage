@@ -26,6 +26,8 @@ const projectSectionCopy = computed(() => siteCopy.projectsSection)
 
     <HeroSection
       :name="profile.name"
+      :avatar-src="profile.avatarSrc"
+      :avatar-alt="profile.avatarAlt"
       :title="profile.title"
       :intro="profile.intro"
       :mission="profile.mission"
