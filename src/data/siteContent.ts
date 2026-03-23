@@ -1,5 +1,11 @@
 ﻿
 import profileAvatar from '../assets/avatar.jpg'
+import project1Cover from '../assets/projects/project1-cover.png'
+import project1Detail01 from '../assets/projects/project1-detail-01.png'
+import project2Cover from '../assets/projects/project2-cover.png'
+import project2Detail01 from '../assets/projects/project2-detail-01.png'
+import project3Cover from '../assets/projects/project3-cover.png'
+import project3Detail01 from '../assets/projects/project3-detail-01.png'
 
 export type Locale = 'zh' | 'en'
 
@@ -25,10 +31,16 @@ export interface ProjectMetric {
 }
 
 export interface ProjectItem {
+  slug: string
   title: LocalizedText
   category: LocalizedText
   summary: LocalizedText
   outcome: LocalizedText
+  coverImageSrc?: string
+  coverImageAlt?: LocalizedText
+  coverImageTone?: string
+  detailImageSrc?: string
+  detailImageAlt?: LocalizedText
   stack: string[]
   metrics: ProjectMetric[]
   links: LinkItem[]
@@ -109,6 +121,7 @@ export interface SiteCopy {
     kicker: LocalizedText
     title: LocalizedText
     description: LocalizedText
+    detailLabel: LocalizedText
     dragHint: LocalizedText
     autoScrolling: LocalizedText
     paused: LocalizedText
@@ -200,6 +213,7 @@ export const siteCopy: SiteCopy = {
       zh: '每個專案都用「做了什麼、為什麼這樣做、最後帶來什麼結果」來呈現，盡量不說廢話。',
       en: 'Each project is framed by what I built, why I approached it that way, and what outcome it created.',
     },
+    detailLabel: { zh: '詳細內容', en: 'Details' },
     dragHint: { zh: '向右滑動查看更多作品', en: 'Scroll right to explore more projects' },
     autoScrolling: { zh: '自動滑動中', en: 'Auto scrolling' },
     paused: { zh: '已暫停，方便閱讀', en: 'Paused for browsing' },
@@ -293,50 +307,109 @@ export const skills: SkillItem[] = [
 
 export const projects: ProjectItem[] = [
   {
-    title: { zh: '個人品牌網站與技術文章平台', en: 'Personal brand site and technical writing platform' },
-    category: { zh: '作品集 / 內容平台', en: 'Portfolio / Content platform' },
+    slug: 'unsupervised-clustering-of-solder-joints',
+    title: { zh: '焊點非監督式分群', en: 'Unsupervised Clustering of Solder Joints' },
+    category: { zh: '電腦視覺 / AI 缺陷分析', en: 'Computer Vision / AI Defect Analysis' },
     summary: {
-      zh: '以 Vue 3 和 Vite 建立個人網站，整合技能介紹、專案案例與技術文章入口，作為長期經營的內容基地。',
-      en: 'Built a personal website with Vue 3 and Vite to combine skills, case studies, and technical articles into a long-term content hub.',
+      zh: '我建立了一套非監督式缺陷分群流程，先利用 Segment Anything Model（SAM）對焊點進行分割，再透過 autoencoder 萃取 128 維潛在特徵，最後使用 DBSCAN 在無標註資料的情況下自動將焊點型態分群。',
+      en: 'Developed an unsupervised defect clustering pipeline by segmenting solder joints using Segment Anything Model (SAM), extracting 128-dimensional latent embeddings with an autoencoder, and applying DBSCAN clustering to group patterns without labeled data.',
     },
     outcome: {
-      zh: '把自我介紹頁升級成能承接流量、展示實力、引導贊助與後續合作的作品集網站。',
-      en: 'Turned a simple introduction page into a portfolio site that can receive traffic, demonstrate strengths, and guide support or collaboration.',
+      zh: '這個專案展示了我把電腦視覺、深度學習與非監督式學習串成完整分析流程的能力，能在不標註焊點類型的情況下，將不同型態的焊點分群。',
+      en: 'This project demonstrates my ability to combine computer vision, deep learning, and unsupervised learning into a complete analysis workflow, helping uncover latent solder-joint patterns when labeled data is unavailable.',
     },
-    stack: ['Vue 3', 'TypeScript', 'Vite', 'GitHub Pages'],
+    coverImageSrc: project1Cover,
+    coverImageAlt: {
+      zh: 'AutoEncoder 與 DBSCAN 流程圖',
+      en: 'AutoEncoder and DBSCAN pipeline',
+    },
+    coverImageTone: 'ocean',
+    detailImageSrc: project1Detail01,
+    detailImageAlt: {
+      zh: '焊點分群前後結果',
+      en: 'Clustering result of solder-joint',
+    },
+    stack: ['Python', 'PyTorch', 'Segment Anything Model', 'Autoencoder', 'DBSCAN'],
     metrics: [
-      { label: { zh: '網站定位', en: 'Site positioning' }, value: { zh: '作品集 + 部落格', en: 'Portfolio + blog' } },
-      { label: { zh: '部署方式', en: 'Deployment' }, value: { zh: 'GitHub Actions', en: 'GitHub Actions' } },
-      { label: { zh: '維護成本', en: 'Maintenance cost' }, value: { zh: '免費靜態託管', en: 'Free static hosting' } },
+      { label: { zh: '資料標註', en: 'Labels' }, value: { zh: '無標註資料', en: 'No labeled data' } },
+      { label: { zh: '特徵維度', en: 'Embedding size' }, value: { zh: '128 維', en: '128 dimensions' } },
+      { label: { zh: '分群方法', en: 'Clustering method' }, value: { zh: 'DBSCAN', en: 'DBSCAN' } },
     ],
     links: [
-      { label: { zh: 'About 頁', en: 'About page' }, href: '#/about' },
-      { label: { zh: 'GitHub Repo', en: 'GitHub repo' }, href: 'https://github.com/' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
     ],
   },
   {
-    title: { zh: 'Vue 元件與版型練習庫', en: 'Vue component and layout practice library' },
-    category: { zh: '前端系統', en: 'Frontend system' },
+    slug: 'pcb-component-detection-using-yolo',
+    title: { zh: '使用 YOLO 的 PCB 元件偵測', en: 'PCB Component Detection using YOLO' },
+    category: { zh: '電腦視覺 / 目標偵測', en: 'Computer Vision / Object Detection' },
     summary: {
-      zh: '整理常用版型、卡片、導覽與 CTA 區塊，讓之後新增文章頁或 landing page 時能更快複用。',
-      en: 'Collected reusable layouts, cards, navigation patterns, and CTA blocks so future article pages or landing pages can be built faster.',
+      zh: '我實作了基於 YOLOv11 的 PCB 元件偵測系統，用來辨識電路板上的元件，例如電容、電阻與焊點等關鍵目標。',
+      en: 'Implemented YOLOv11-based object detection for PCB component identification, detecting components such as capacitors, resistors, and solder joints.',
     },
     outcome: {
-      zh: '降低後續擴充成本，讓每次新增內容都能維持一致的視覺語言與開發節奏。',
-      en: 'Reduced future expansion cost and kept both visual language and development pace more consistent.',
+      zh: '這個專案展示了我將深度學習目標偵測應用在實際 PCB 視覺檢測任務上的能力，能有效協助元件定位與後續自動化檢測流程。',
+      en: 'This project demonstrates my ability to apply deep-learning-based object detection to practical PCB inspection tasks, supporting component localization and downstream automation workflows.',
     },
-    stack: ['Vue 3', 'Scoped CSS', 'Design Tokens'],
+    coverImageSrc: project2Cover,
+    coverImageAlt: {
+      zh: 'PCB 元件偵測結果 1',
+      en: 'PCB component detection result 1',
+    },
+    coverImageTone: 'copper',
+    detailImageSrc: project2Detail01,
+    detailImageAlt: {
+      zh: 'PCB 元件偵測結果 2',
+      en: 'PCB component detection result 2',
+    },
+    stack: ['Python', 'YOLOv11', 'Object Detection', 'Computer Vision', 'PCB Inspection'],
     metrics: [
-      { label: { zh: '重用目標', en: 'Reuse target' }, value: { zh: '首頁 / 文章頁 / 專案頁', en: 'Home / article / project pages' } },
-      { label: { zh: '核心價值', en: 'Core value' }, value: { zh: '一致性與維護性', en: 'Consistency and maintainability' } },
-      { label: { zh: '下階段', en: 'Next step' }, value: { zh: '抽成內容模板', en: 'Turn into reusable content templates' } },
+      { label: { zh: '模型架構', en: 'Model architecture' }, value: { zh: 'YOLOv11', en: 'YOLOv11' } },
+      { label: { zh: '偵測目標', en: 'Targets' }, value: { zh: '電容 / 電阻 / 焊點', en: 'Capacitors / Resistors / Solder joints' } },
+      { label: { zh: '應用場景', en: 'Use case' }, value: { zh: 'PCB 視覺檢測', en: 'PCB visual inspection' } },
     ],
     links: [
-      { label: { zh: '作品集頁', en: 'Projects page' }, href: '#/projects' },
-      { label: { zh: '文章列表', en: 'Article list' }, href: '#/articles' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+    ],
+  },
+  {
+    slug: 'web-based-aoi-review-platform',
+    title: { zh: '網頁式 AOI 複判平台', en: 'Web-Based AOI Review Platform' },
+    category: { zh: '全端系統 / AOI 缺陷複判', en: 'Full-Stack System / AOI Defect Review' },
+    summary: {
+      zh: '我使用 ASP.NET Core Web API（後端）與 Vue.js（前端）開發了一套完整的 SPC（Statistical Process Control）網頁平台。',
+      en: 'Developed a full-stack SPC (statistical process control) web platform using ASP.NET Core Web API (backend) and Vue.js (frontend).',
+    },
+    outcome: {
+      zh: '我實作了缺陷複判介面，可從 AOI 資料庫擷取 PCB 影像與 NG 元件資料，並整合基於 Three.js 的 3D 視覺化功能，讓使用者能在瀏覽器中互動式檢視缺陷深度圖。',
+      en: 'Implemented a defect review interface to retrieve PCB images and NG component data from the AOI database. Integrated Three.js-based 3D visualization for interactive rendering of defect depth maps in the browser.',
+    },
+    coverImageSrc: project3Cover,
+    coverImageAlt: {
+      zh: 'AOI 複判平台畫面',
+      en: 'AOI review platform overview',
+    },
+    coverImageTone: 'forest',
+    detailImageSrc: project3Detail01,
+    detailImageAlt: {
+      zh: 'AOI 缺陷深度圖與複判畫面',
+      en: 'AOI defect depth-map review view',
+    },
+    stack: ['ASP.NET Core Web API', 'Vue.js', 'Three.js', 'SPC', 'AOI Database'],
+    metrics: [
+      { label: { zh: '系統型態', en: 'System type' }, value: { zh: '全端 SPC 平台', en: 'Full-stack SPC platform' } },
+      { label: { zh: '主要功能', en: 'Core feature' }, value: { zh: 'AOI 缺陷複判', en: 'AOI defect review' } },
+      { label: { zh: '視覺化技術', en: 'Visualization' }, value: { zh: 'Three.js 3D 深度圖', en: 'Three.js 3D depth map' } },
+    ],
+    links: [
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
     ],
   },
 ]
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug)
+}
 
 export const articles: ArticleItem[] = [
   {

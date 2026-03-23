@@ -27,6 +27,7 @@ const sectionCopy = computed(() => siteCopy.projectsSection)
       :kicker="sectionCopy.kicker"
       :title="sectionCopy.title"
       :description="sectionCopy.description"
+      :detail-label="sectionCopy.detailLabel"
       :drag-hint="sectionCopy.dragHint"
       :auto-scrolling-label="sectionCopy.autoScrolling"
       :paused-label="sectionCopy.paused"
