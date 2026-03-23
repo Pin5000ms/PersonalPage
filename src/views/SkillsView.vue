@@ -1,6 +1,9 @@
 ﻿<script setup lang="ts">
-import SkillsSection from '../components/sections/SkillsSection.vue'
-import { skills } from '../data/siteContent'
+import SkillsCardsSection from '../components/sections/SkillsCardsSection.vue'
+import { computed } from 'vue'
+import { siteCopy, skills } from '../data/siteContent'
+
+const sectionCopy = computed(() => siteCopy.skillsSection)
 </script>
 
 <template>
@@ -8,12 +11,18 @@ import { skills } from '../data/siteContent'
     <section class="page-intro">
       <p class="page-kicker">Skills overview</p>
       <h1 class="page-title">我的技能</h1>
-      <p class="page-description">
-        這一頁整理我想被記住的前端能力，包含 Vue 開發、介面體驗與技術內容創作。
-      </p>
+      <p class="page-description">這一頁整理我目前的軟體工程、AI、電腦視覺與 Web 開發能力。</p>
     </section>
 
-    <SkillsSection :items="skills" />
+    <SkillsCardsSection
+      :items="skills"
+      :kicker="sectionCopy.kicker"
+      :title="sectionCopy.title"
+      :description="sectionCopy.description"
+      :drag-hint="sectionCopy.dragHint"
+      :auto-scrolling-label="sectionCopy.autoScrolling"
+      :paused-label="sectionCopy.paused"
+    />
   </div>
 </template>
 

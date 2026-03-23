@@ -197,12 +197,12 @@ export const siteCopy: SiteCopy = {
   skillsSection: {
     kicker: { zh: 'What I can help with', en: 'What I can help with' },
     title: {
-      zh: '技能不只是列清單，也要能支撐作品與內容輸出',
-      en: 'Skills should support both project execution and technical communication',
+      zh: '從桌面軟體、AI 到電腦視覺與 Web 開發',
+      en: 'From desktop software and AI to computer vision and web development',
     },
     description: {
-      zh: '這一區聚焦的是你真正想被記住的能力，而不是把所有用過的工具一次堆上來。',
-      en: 'This section focuses on the capabilities I want to be remembered for instead of listing every tool I have touched.',
+      zh: '這裡整理我目前最具代表性的技術能力，涵蓋桌面應用、機器學習、視覺檢測與全端系統開發。',
+      en: 'This section highlights the technical areas that best represent my work across desktop applications, machine learning, vision inspection, and full-stack development.',
     },
     dragHint: { zh: '向右滑動查看更多技能', en: 'Scroll right to explore more skills' },
     autoScrolling: { zh: '自動滑動中', en: 'Auto scrolling' },
@@ -287,28 +287,36 @@ export const contactInfo: ContactInfoItem[] = [
 
 export const skills: SkillItem[] = [
   {
-    title: { zh: 'Vue 3 與 Composition API', en: 'Vue 3 and Composition API' },
+    title: { zh: '軟體工程', en: 'Software Engineering' },
     summary: {
-      zh: '熟悉元件拆分、資料流設計、可重用 composables 與靜態部署流程，能把網站從 demo 做到可長期維護。',
-      en: 'Comfortable with component boundaries, data flow design, reusable composables, and static deployment workflows, turning demos into maintainable products.',
+      zh: '具備 Windows 桌面應用開發經驗，熟悉 C# WinForms、WPF 與 MVVM 架構，也能用 Python 建立後端服務與 AI 應用流程。',
+      en: 'Experienced in Windows desktop application development with C# WinForms, WPF, and MVVM, while also using Python to build backend services and AI-driven workflows.',
     },
-    tags: ['Vue 3', 'TypeScript', 'Vite'],
+    tags: ['C#', 'WinForms', 'WPF', 'MVVM', 'Python', 'PyTorch', 'FastAPI'],
   },
   {
-    title: { zh: '前端介面與使用體驗', en: 'Frontend UI and user experience' },
+    title: { zh: 'AI / Machine Learning', en: 'AI / Machine Learning' },
     summary: {
-      zh: '重視資訊層級、閱讀節奏、互動回饋與 RWD，讓作品集不只是列出功能，而是讓人願意停留。',
-      en: 'I care about information hierarchy, reading rhythm, interaction feedback, and responsive design so a portfolio feels intentional instead of functional only.',
+      zh: '熟悉深度學習模型實作與整合，包含 CNN、FNN、YOLO、SAM 與 LLM，能依需求選擇合適模型落地到實際應用情境。',
+      en: 'Comfortable implementing and integrating deep-learning solutions including CNN, FNN, YOLO, SAM, and LLM workflows for practical use cases.',
     },
-    tags: ['UI Design', 'Responsive', 'Accessibility'],
+    tags: ['CNN', 'FNN', 'YOLO', 'SAM', 'LLM'],
   },
   {
-    title: { zh: '技術內容創作', en: 'Technical content creation' },
+    title: { zh: '電腦視覺', en: 'Computer Vision' },
     summary: {
-      zh: '能把實作經驗整理成教學文章，適合經營 SEO 長尾主題，也讓作品有更多延伸曝光的機會。',
-      en: 'I can turn implementation experience into instructional writing, which supports long-tail SEO topics and extends the visibility of each project.',
+      zh: '熟悉影像處理與機器視覺檢測流程，能結合 OpenCV 與 Halcon 建立量測、定位、缺陷分析與自動化視覺應用。',
+      en: 'Skilled in image processing and machine vision inspection workflows, combining OpenCV and Halcon for measurement, localization, defect analysis, and automation.',
     },
-    tags: ['Technical Writing', 'SEO', 'Documentation'],
+    tags: ['OpenCV', 'Halcon'],
+  },
+  {
+    title: { zh: 'Web 開發', en: 'Web Development' },
+    summary: {
+      zh: '可開發前後端整合系統，包含 ASP.NET Core Web API、Vue.js、React 與 Three.js，支援資料介接、互動式介面與 3D 視覺化。',
+      en: 'Able to build integrated web systems with ASP.NET Core Web API, Vue.js, React, and Three.js for data-driven interfaces, interactive tooling, and 3D visualization.',
+    },
+    tags: ['ASP.NET Core Web API', 'Vue.js', 'React', 'Three.js'],
   },
 ]
 

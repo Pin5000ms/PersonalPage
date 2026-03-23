@@ -2,8 +2,9 @@
 import { computed } from 'vue'
 import HeroSection from '../components/sections/HeroSection.vue'
 import PortfolioSection from '../components/sections/PortfolioSection.vue'
+import SkillsCardsSection from '../components/sections/SkillsCardsSection.vue'
 import { useLanguage } from '../composables/useLanguage'
-import { profile, projects, siteCopy } from '../data/siteContent'
+import { profile, projects, siteCopy, skills } from '../data/siteContent'
 
 const { locale } = useLanguage()
 
@@ -13,6 +14,7 @@ function t(text: { zh: string; en: string }) {
 
 const pageCopy = computed(() => siteCopy.aboutPage)
 const heroCopy = computed(() => siteCopy.hero)
+const skillsSectionCopy = computed(() => siteCopy.skillsSection)
 const projectSectionCopy = computed(() => siteCopy.projectsSection)
 </script>
 
@@ -36,6 +38,16 @@ const projectSectionCopy = computed(() => siteCopy.projectsSection)
       :focus-points="profile.focusPoints"
       :kicker="heroCopy.kicker"
       :panel-label="heroCopy.panelLabel"
+    />
+
+    <SkillsCardsSection
+      :items="skills"
+      :kicker="skillsSectionCopy.kicker"
+      :title="skillsSectionCopy.title"
+      :description="skillsSectionCopy.description"
+      :drag-hint="skillsSectionCopy.dragHint"
+      :auto-scrolling-label="skillsSectionCopy.autoScrolling"
+      :paused-label="skillsSectionCopy.paused"
     />
 
     <PortfolioSection
