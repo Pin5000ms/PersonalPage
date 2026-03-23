@@ -22,7 +22,7 @@ const contentItems = computed(() =>
       <p class="page-kicker">Technical writing</p>
       <h1 class="page-title">技術分享文章</h1>
       <p class="page-description">
-        這裡收錄我把實作經驗整理成文章的內容，讓作品背後的思考、流程與取捨更完整地被看見。
+        這裡收錄我把實作經驗整理成文章的內容。
       </p>
     </section>
 

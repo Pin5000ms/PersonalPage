@@ -23,7 +23,7 @@ const contentItems = computed(() =>
       <p class="page-kicker">Interview notes</p>
       <h1 class="page-title">面試經驗</h1>
       <p class="page-description">
-        我把面試練習與回顧整理在這裡，方便之後持續累積自己的回答框架與經驗總結。
+        我把曾面試過的公司和過程整理在這邊，希望能幫到有需要的人。
       </p>
     </section>
 
