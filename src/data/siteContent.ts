@@ -49,7 +49,7 @@ export const profile = {
     '這個網站會同時是作品集、技術部落格和個人品牌入口，目標是累積可信度、建立搜尋流量，再把流量轉成小額贊助與合作機會。',
   primaryLink: {
     label: '查看作品集',
-    href: '#/about',
+    href: '#/projects',
   },
   secondaryLink: {
     label: '閱讀技術文章',
@@ -98,7 +98,7 @@ export const projects: ProjectItem[] = [
       { label: '維護成本', value: '免費靜態託管' },
     ],
     links: [
-      { label: '網站首頁', href: '#/about' },
+      { label: 'About 頁', href: '#/about' },
       { label: 'GitHub Repo', href: 'https://github.com/' },
     ],
   },
@@ -116,7 +116,7 @@ export const projects: ProjectItem[] = [
       { label: '下階段', value: '抽成內容模板' },
     ],
     links: [
-      { label: '技能頁', href: '#/skills' },
+      { label: '作品集頁', href: '#/projects' },
       { label: '文章列表', href: '#/articles' },
     ],
   },

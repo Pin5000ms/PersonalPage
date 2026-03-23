@@ -4,10 +4,10 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 const route = useRoute()
 
 const navItems = [
-  { label: 'About me', to: '/about' },
-  { label: 'Skills', to: '/skills' },
-  { label: 'Articles', to: '/articles' },
-  { label: 'Interview', to: '/interview' },
+  { label: 'About me (關於我)', to: '/about' },
+  { label: 'Articles (技術分享文章)', to: '/articles' },
+  { label: 'Projects (作品集)', to: '/projects' },
+  { label: 'Interview (面試經驗)', to: '/interview' },
 ]
 </script>
 
