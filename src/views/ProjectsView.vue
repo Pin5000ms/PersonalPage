@@ -1,6 +1,6 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed } from 'vue'
-import PortfolioSection from '../components/sections/PortfolioSection.vue'
+import ProjectBlocksSection from '../components/sections/ProjectBlocksSection.vue'
 import { useLanguage } from '../composables/useLanguage'
 import { projects, siteCopy } from '../data/siteContent'
 
@@ -22,11 +22,13 @@ const sectionCopy = computed(() => siteCopy.projectsSection)
       <p class="page-description">{{ t(pageCopy.description) }}</p>
     </section>
 
-    <PortfolioSection
+    <ProjectBlocksSection
       :items="projects"
       :kicker="sectionCopy.kicker"
       :title="sectionCopy.title"
       :description="sectionCopy.description"
+      :ai-title="sectionCopy.aiTitle"
+      :other-title="sectionCopy.otherTitle"
       :detail-label="sectionCopy.detailLabel"
       :drag-hint="sectionCopy.dragHint"
       :auto-scrolling-label="sectionCopy.autoScrolling"
@@ -65,3 +67,4 @@ const sectionCopy = computed(() => siteCopy.projectsSection)
   line-height: 1.8;
 }
 </style>
+

@@ -6,6 +6,8 @@ import project2Cover from '../assets/projects/project2-cover.png'
 import project2Detail01 from '../assets/projects/project2-detail-01.png'
 import project3Cover from '../assets/projects/project3-cover.png'
 import project3Detail01 from '../assets/projects/project3-detail-01.png'
+import project4Cover from '../assets/projects/project4-cover.png'
+import project4Detail01 from '../assets/projects/project4-detail-01.png'
 
 export type Locale = 'zh' | 'en'
 
@@ -32,6 +34,7 @@ export interface ProjectMetric {
 
 export interface ProjectItem {
   slug: string
+  group: 'ai' | 'other'
   title: LocalizedText
   category: LocalizedText
   summary: LocalizedText
@@ -121,6 +124,8 @@ export interface SiteCopy {
     kicker: LocalizedText
     title: LocalizedText
     description: LocalizedText
+    aiTitle: LocalizedText
+    otherTitle: LocalizedText
     detailLabel: LocalizedText
     dragHint: LocalizedText
     autoScrolling: LocalizedText
@@ -213,6 +218,8 @@ export const siteCopy: SiteCopy = {
       zh: '每個專案都用「做了什麼、為什麼這樣做、最後帶來什麼結果」來呈現。',
       en: 'Each project is framed by what I built, why I approached it that way, and what outcome it created.',
     },
+    aiTitle: { zh: 'AI 相關', en: 'AI related' },
+    otherTitle: { zh: '其他專案', en: 'Other projects' },
     detailLabel: { zh: '詳細內容', en: 'Details' },
     dragHint: { zh: '向右滑動查看更多作品', en: 'Scroll right to explore more projects' },
     autoScrolling: { zh: '自動滑動中', en: 'Auto scrolling' },
@@ -308,6 +315,7 @@ export const skills: SkillItem[] = [
 export const projects: ProjectItem[] = [
   {
     slug: 'unsupervised-clustering-of-solder-joints',
+    group: 'ai',
     title: { zh: '焊點非監督式分群', en: 'Unsupervised Clustering of Solder Joints' },
     category: { zh: '電腦視覺 / AI 缺陷分析', en: 'Computer Vision / AI Defect Analysis' },
     summary: {
@@ -341,6 +349,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'pcb-component-detection-using-yolo',
+    group: 'ai',
     title: { zh: '使用 YOLO 的 PCB 元件偵測', en: 'PCB Component Detection using YOLO' },
     category: { zh: '電腦視覺 / 目標偵測', en: 'Computer Vision / Object Detection' },
     summary: {
@@ -374,6 +383,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'web-based-aoi-review-platform',
+    group: 'other',
     title: { zh: '網頁式 AOI 複判平台', en: 'Web-Based AOI Review Platform' },
     category: { zh: '全端系統 / AOI 缺陷複判', en: 'Full-Stack System / AOI Defect Review' },
     summary: {
@@ -400,6 +410,40 @@ export const projects: ProjectItem[] = [
       { label: { zh: '系統型態', en: 'System type' }, value: { zh: '全端 SPC 平台', en: 'Full-stack SPC platform' } },
       { label: { zh: '主要功能', en: 'Core feature' }, value: { zh: 'AOI 缺陷複判', en: 'AOI defect review' } },
       { label: { zh: '視覺化技術', en: 'Visualization' }, value: { zh: 'Three.js 3D 深度圖', en: 'Three.js 3D depth map' } },
+    ],
+    links: [
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+    ],
+  },
+  {
+    slug: 'csharp-wpf-sudoku-flowchart',
+    group: 'other',
+    title: { zh: 'C# / WPF 數獨與流程圖', en: 'C# / WPF Sudoku & FlowChart' },
+    category: { zh: '桌面應用 / WPF 工具', en: 'Desktop App / WPF Tooling' },
+    summary: {
+      zh: '我開發了一個數獨求解器，使用回溯演算法並即時視覺化顯示求解過程。',
+      en: 'A Sudoku solver that utilizes a backtracking algorithm with real-time visualization of the solving process.',
+    },
+    outcome: {
+      zh: '我也製作了一個流程圖概念驗證（POC），用於靈活建立工作流程，其中每個方塊都代表一個獨立功能，展示我在 C# / WPF 桌面應用與互動式工具設計上的能力。',
+      en: 'I also built a flowchart proof of concept (POC) designed for flexible workflow creation, where each block represents a distinct function, demonstrating my ability to design interactive desktop tools with C# and WPF.',
+    },
+    coverImageSrc: project4Cover,
+    coverImageAlt: {
+      zh: '數獨求解器與即時視覺化畫面',
+      en: 'Sudoku solver with real-time visualization',
+    },
+    coverImageTone: 'sunrise',
+    detailImageSrc: project4Detail01,
+    detailImageAlt: {
+      zh: '流程圖工作流概念驗證畫面',
+      en: 'Flowchart workflow proof-of-concept view',
+    },
+    stack: ['C#', 'WPF', 'Backtracking Algorithm', 'Desktop UI', 'Workflow POC'],
+    metrics: [
+      { label: { zh: '應用型態', en: 'Application type' }, value: { zh: '桌面工具', en: 'Desktop tool' } },
+      { label: { zh: '求解方法', en: 'Solving method' }, value: { zh: '回溯演算法', en: 'Backtracking algorithm' } },
+      { label: { zh: '延伸功能', en: 'Extended feature' }, value: { zh: '流程圖工作流建立', en: 'Flowchart workflow creation' } },
     ],
     links: [
       { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
