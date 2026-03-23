@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import { useLanguage } from '../../composables/useLanguage'
 import type { LinkItem, LocalizedText } from '../../data/siteContent'
 
@@ -17,19 +17,85 @@ interface Props {
 
 const props = defineProps<Props>()
 const { locale } = useLanguage()
+const typedText = shallowRef('')
+const showCaret = shallowRef(true)
+let typingInterval: number | null = null
+let caretInterval: number | null = null
 
 function t(text: LocalizedText) {
   return text[locale.value]
 }
 
 const localizedFocusPoints = computed(() => props.focusPoints.map((point) => t(point)))
+const typewriterText = computed(() => `${t(props.name)} 👨‍💻`)
+
+function clearTimers() {
+  if (typingInterval !== null) {
+    window.clearInterval(typingInterval)
+    typingInterval = null
+  }
+
+  if (caretInterval !== null) {
+    window.clearInterval(caretInterval)
+    caretInterval = null
+  }
+}
+
+function splitGraphemes(value: string) {
+  if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+    const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+    return Array.from(segmenter.segment(value), (segment) => segment.segment)
+  }
+
+  return Array.from(value)
+}
+
+function startTypewriter() {
+  clearTimers()
+  typedText.value = ''
+  showCaret.value = true
+
+  const characters = splitGraphemes(typewriterText.value)
+  let index = 0
+
+  typingInterval = window.setInterval(() => {
+    typedText.value += characters[index] ?? ''
+    index += 1
+
+    if (index >= characters.length && typingInterval !== null) {
+      window.clearInterval(typingInterval)
+      typingInterval = null
+    }
+  }, 95)
+
+  caretInterval = window.setInterval(() => {
+    showCaret.value = !showCaret.value
+  }, 650)
+}
+
+watch(typewriterText, () => {
+  startTypewriter()
+})
+
+onMounted(() => {
+  startTypewriter()
+})
+
+onBeforeUnmount(() => {
+  clearTimers()
+})
 </script>
 
 <template>
   <section class="hero">
     <div class="hero-copy">
       <p class="hero-kicker">{{ t(kicker) }}</p>
-      <h1 class="hero-title">{{ t(name) }}</h1>
+      <div class="hero-title-wrap">
+        <h1 class="hero-title">
+          <span>{{ typedText }}</span>
+          <span class="hero-caret" :class="{ 'hero-caret-hidden': !showCaret }">|</span>
+        </h1>
+      </div>
       <p class="hero-role">{{ t(title) }}</p>
       <p class="hero-intro">{{ t(intro) }}</p>
       <p class="hero-mission">{{ t(mission) }}</p>
@@ -92,10 +158,40 @@ const localizedFocusPoints = computed(() => props.focusPoints.map((point) => t(p
   text-transform: uppercase;
 }
 
+.hero-title-wrap {
+  position: relative;
+  margin: 0 0 0.3rem;
+  padding: 1.35rem 1.35rem 1.65rem;
+  border: 1px solid rgba(12, 30, 27, 0.18);
+  border-radius: 22px;
+  background: linear-gradient(180deg, #1d2222 0%, #0f1111 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 30px rgba(16, 24, 24, 0.18);
+}
+
 .hero-title {
+  display: inline-block;
   margin: 0;
-  font-size: clamp(2.8rem, 7vw, 5.2rem);
-  line-height: 0.95;
+  padding-bottom: 0.08em;
+  color: #f7f9f8;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+}
+
+.hero-caret {
+  display: inline-block;
+  margin-left: 0.06em;
+  color: #f7f9f8;
+  transition: opacity 140ms ease;
+}
+
+.hero-caret-hidden {
+  opacity: 0;
 }
 
 .hero-role,
@@ -162,6 +258,10 @@ const localizedFocusPoints = computed(() => props.focusPoints.map((point) => t(p
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    white-space: normal;
   }
 }
 </style>
