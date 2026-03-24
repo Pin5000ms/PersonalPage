@@ -9,7 +9,7 @@ import {
 } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import { useLanguage } from './composables/useLanguage'
-import { siteCopy } from './data/siteContent'
+import { contactInfo, profile, siteCopy } from './data/siteContent'
 
 const route = useRoute()
 const { locale, toggleLanguage } = useLanguage()
@@ -22,6 +22,13 @@ const indicatorVisible = shallowRef(false)
 const indicatorPadding = 10
 
 const navItems = computed(() => siteCopy.nav)
+const footerLinks = computed(() => contactInfo)
+const footerCopyright = computed(() => `© ${new Date().getFullYear()} ${profile.name.en}. All Rights Reserved.`)
+const contactIcons: Record<string, string> = {
+  Email: 'M4 6.75A2.75 2.75 0 0 1 6.75 4h10.5A2.75 2.75 0 0 1 20 6.75v10.5A2.75 2.75 0 0 1 17.25 20H6.75A2.75 2.75 0 0 1 4 17.25V6.75Zm2 0v.24l6 4.37 6-4.37v-.24a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75Zm12 2.71-5.41 3.95a1 1 0 0 1-1.18 0L6 9.46v7.79c0 .41.34.75.75.75h10.5c.41 0 .75-.34.75-.75V9.46Z',
+  GitHub: 'M12 2.75a9.25 9.25 0 0 0-2.92 18.03c.46.09.63-.2.63-.45 0-.22-.01-.96-.01-1.74-2.31.42-2.91-.57-3.1-1.1-.1-.27-.54-1.1-.92-1.32-.31-.17-.76-.6-.01-.61.7-.01 1.2.64 1.37.91.8 1.35 2.09.97 2.6.74.08-.58.31-.97.56-1.19-2.05-.23-4.18-1.03-4.18-4.56 0-1.01.36-1.84.95-2.49-.09-.23-.41-1.17.09-2.44 0 0 .78-.25 2.56.95a8.86 8.86 0 0 1 4.66 0c1.78-1.21 2.56-.95 2.56-.95.5 1.27.18 2.21.09 2.44.59.65.95 1.47.95 2.49 0 3.54-2.14 4.33-4.19 4.56.32.27.6.79.6 1.6 0 1.16-.01 2.09-.01 2.38 0 .25.17.55.64.45A9.25 9.25 0 0 0 12 2.75Z',
+  LinkedIn: 'M6.9 8.25a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8ZM5.7 9.7h2.4V18H5.7V9.7Zm3.9 0h2.3v1.13h.03c.32-.61 1.1-1.26 2.26-1.26 2.42 0 2.87 1.59 2.87 3.66V18h-2.4v-4.23c0-1.01-.02-2.31-1.41-2.31-1.41 0-1.62 1.1-1.62 2.24V18H9.6V9.7Z',
+}
 
 const headerClasses = computed(() => ({
   'site-header-scrolled': isScrolled.value,
@@ -49,6 +56,10 @@ function toggleMenu() {
 
 function closeMenu() {
   isMenuOpen.value = false
+}
+
+function getContactIcon(label: string) {
+  return contactIcons[label] ?? contactIcons.Email
 }
 
 function syncDesktopIndicator() {
@@ -181,6 +192,55 @@ onBeforeUnmount(() => {
     <main class="site-main">
       <RouterView />
     </main>
+
+    <footer class="site-footer">
+      <div class="site-footer-panel">
+        <div class="site-footer-column">
+          <p class="site-footer-heading">{{ locale === 'zh' ? '導覽' : 'Navigate' }}</p>
+          <nav class="site-footer-nav" aria-label="Footer navigation">
+            <RouterLink
+              v-for="item in navItems"
+              :key="`footer-${item.to}`"
+              class="site-footer-link"
+              :to="item.to"
+            >
+              {{ item.label[locale] }}
+            </RouterLink>
+          </nav>
+        </div>
+
+        <div class="site-footer-column">
+          <p class="site-footer-heading">{{ locale === 'zh' ? '聯絡方式' : 'Connect' }}</p>
+          <div class="site-footer-links">
+            <a
+              v-for="item in footerLinks"
+              :key="item.label"
+              class="site-footer-contact"
+              :class="{
+                'site-footer-contact-disabled': !item.href,
+                'site-footer-contact-linkedin': item.label === 'LinkedIn',
+              }"
+              :href="item.href || undefined"
+              :target="item.href.startsWith('http') ? '_blank' : undefined"
+              :rel="item.href.startsWith('http') ? 'noreferrer' : undefined"
+              :aria-label="item.label"
+              :title="item.value"
+            >
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path :d="getContactIcon(item.label)" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-footer-meta">
+        <p class="site-footer-copy">{{ footerCopyright }}</p>
+        <RouterLink class="site-footer-back" to="/about">
+          {{ locale === 'zh' ? '回到頁首' : 'Back to top' }}
+        </RouterLink>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -448,6 +508,115 @@ onBeforeUnmount(() => {
   gap: 4.75rem;
 }
 
+.site-footer {
+  display: grid;
+  gap: 1rem;
+  margin-top: 4.5rem;
+  padding-top: 1rem;
+}
+
+.site-footer-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem 1.6rem;
+  border: 1px solid var(--color-line);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at top right, rgba(223, 234, 228, 0.24), transparent 28%),
+    linear-gradient(180deg, rgba(249, 247, 241, 0.94), rgba(243, 239, 231, 0.92));
+  box-shadow: var(--shadow-soft);
+}
+
+.site-footer-column,
+.site-footer-nav,
+.site-footer-links {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.site-footer-heading,
+.site-footer-copy {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-footer-link,
+.site-footer-back {
+  width: fit-content;
+  color: var(--color-primary-deep);
+  text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.site-footer-link:hover,
+.site-footer-back:hover {
+  color: var(--color-text);
+  transform: translateX(2px);
+}
+
+.site-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--color-primary-deep);
+  text-decoration: none;
+  box-shadow: 0 10px 18px rgba(88, 104, 97, 0.08);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.site-footer-contact svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: currentColor;
+}
+
+.site-footer-contact:hover {
+  transform: translateY(-2px);
+  border-color: rgba(95, 125, 118, 0.26);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-text);
+  box-shadow: 0 14px 24px rgba(88, 104, 97, 0.12);
+}
+
+.site-footer-contact-linkedin svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.site-footer-contact-disabled {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.site-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: 0.2rem;
+}
+
 .mobile-nav-enter-active,
 .mobile-nav-leave-active {
   transition: opacity 180ms ease, transform 180ms ease;
@@ -480,6 +649,10 @@ onBeforeUnmount(() => {
   .menu-toggle {
     display: inline-flex;
   }
+
+  .site-footer-panel {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 720px) {
@@ -497,6 +670,20 @@ onBeforeUnmount(() => {
 
   .site-main {
     gap: 3.5rem;
+  }
+
+  .site-footer {
+    margin-top: 3.5rem;
+  }
+
+  .site-footer-panel {
+    padding: 1.25rem;
+    border-radius: 1.5rem;
+  }
+
+  .site-footer-meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

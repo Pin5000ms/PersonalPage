@@ -249,7 +249,6 @@ function getContactIcon(label: string) {
   border-radius: 0.28rem;
   background: #0a66c2;
   color: #ffffff;
-  padding: 0.12rem;
 }
 
 .contact-icon svg {

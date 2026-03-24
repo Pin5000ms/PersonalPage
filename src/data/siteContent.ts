@@ -223,12 +223,8 @@ export const profile = {
       en: 'Turn project experience into examples that are quick to understand',
     },
     {
-      zh: '用作品與文章建立前端專業可信度',
-      en: 'Use projects and writing to establish frontend credibility',
-    },
-    {
-      zh: '為後續贊助、接案與內容收入打基礎',
-      en: 'Build a foundation for future support, freelance work, and content income',
+      zh: '用作品與文章建立技術專業可信度',
+      en: 'Use projects and writing to establish tech credibility',
     },
   ],
 }
@@ -242,12 +238,12 @@ export const contactInfo: ContactInfoItem[] = [
   {
     label: 'GitHub',
     value: 'github.com/tomchang',
-    href: '',
+    href: 'github.com/tomchang',
   },
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/tomchang',
-    href: '',
+    href: 'linkedin.com/in/tomchang',
   },
 ]
 
