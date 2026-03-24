@@ -40,7 +40,7 @@ const totalTags = computed(() =>
         </article>
         <article class="overview-card">
           <span class="overview-value">{{ totalTags }}</span>
-          <span class="overview-label">{{ locale === 'zh' ? '核心技術' : 'Core tools' }}</span>
+          <span class="overview-label">{{ locale === 'zh' ? '核心工具' : 'Core tools' }}</span>
         </article>
       </div>
     </div>
@@ -67,10 +67,10 @@ const totalTags = computed(() =>
 
 <style scoped>
 .skills {
-  --skills-border: rgba(20, 54, 50, 0.12);
-  --skills-shadow: 0 24px 48px rgba(91, 57, 24, 0.08);
-  --skills-panel: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 247, 237, 0.72));
-  --skills-accent: linear-gradient(135deg, #c97d36, #0f5c53);
+  --skills-border: var(--color-line);
+  --skills-shadow: var(--shadow-card);
+  --skills-panel: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(247, 243, 235, 0.82));
+  --skills-accent: linear-gradient(90deg, #c0d0c8, #b78d64);
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
   gap: 1.5rem;
@@ -85,7 +85,9 @@ const totalTags = computed(() =>
   padding: 1.6rem;
   border: 1px solid var(--skills-border);
   border-radius: 32px;
-  background: linear-gradient(180deg, rgba(255, 251, 245, 0.9), rgba(244, 236, 225, 0.72));
+  background:
+    radial-gradient(circle at top right, rgba(211, 225, 218, 0.44), transparent 34%),
+    linear-gradient(180deg, rgba(252, 250, 245, 0.92), rgba(244, 240, 232, 0.82));
   box-shadow: var(--skills-shadow);
   overflow: hidden;
 }
@@ -97,13 +99,13 @@ const totalTags = computed(() =>
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(15, 92, 83, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(183, 141, 100, 0.22), transparent 70%);
   pointer-events: none;
 }
 
 .section-kicker {
   margin: 0;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -111,13 +113,14 @@ const totalTags = computed(() =>
 
 .section-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 1.08;
 }
 
 .section-description {
   margin: 0;
-  color: #31534f;
+  color: var(--color-text-muted);
   line-height: 1.85;
 }
 
@@ -131,7 +134,7 @@ const totalTags = computed(() =>
   display: grid;
   gap: 0.15rem;
   padding: 1rem 1.1rem;
-  border: 1px solid rgba(143, 88, 40, 0.14);
+  border: 1px solid rgba(183, 141, 100, 0.18);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.56);
 }
@@ -140,11 +143,11 @@ const totalTags = computed(() =>
   font-size: clamp(1.8rem, 5vw, 2.4rem);
   font-weight: 700;
   line-height: 1;
-  color: #143632;
+  color: var(--color-text);
 }
 
 .overview-label {
-  color: #6b441f;
+  color: var(--color-accent);
   font-size: 0.92rem;
 }
 
@@ -189,8 +192,8 @@ const totalTags = computed(() =>
   width: fit-content;
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
-  background: rgba(20, 54, 50, 0.08);
-  color: #0f5c53;
+  background: rgba(95, 125, 118, 0.1);
+  color: var(--color-primary-deep);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -198,13 +201,14 @@ const totalTags = computed(() =>
 
 .skill-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 1.28rem;
   line-height: 1.2;
 }
 
 .skill-summary {
   margin: 0;
-  color: #31534f;
+  color: var(--color-text-muted);
   line-height: 1.75;
 }
 
@@ -219,10 +223,10 @@ const totalTags = computed(() =>
 }
 
 .skill-tag {
-  --pill-border-color: rgba(201, 125, 54, 0.18);
-  --pill-background: rgba(255, 248, 238, 0.88);
-  --pill-background-hover: rgba(255, 242, 227, 0.98);
-  --pill-text: #6b441f;
+  --pill-border-color: rgba(183, 141, 100, 0.22);
+  --pill-background: rgba(250, 246, 239, 0.92);
+  --pill-background-hover: rgba(245, 240, 231, 0.98);
+  --pill-text: #876648;
 }
 
 @keyframes skillAccentIn {

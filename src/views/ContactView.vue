@@ -75,7 +75,7 @@ function getContactIcon(label: string) {
 
 .page-kicker {
   margin: 0 0 0.75rem;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.82rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -83,13 +83,14 @@ function getContactIcon(label: string) {
 
 .page-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 4rem);
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .page-description {
   margin: 1rem 0 0;
-  color: #31534f;
+  color: var(--color-text-muted);
   line-height: 1.8;
 }
 
@@ -102,9 +103,10 @@ function getContactIcon(label: string) {
   margin: 0;
   padding: 1rem 1.2rem;
   border-radius: 20px;
-  background: rgba(255, 248, 239, 0.88);
-  color: #214340;
-  box-shadow: 0 16px 32px rgba(73, 48, 20, 0.08);
+  border: 1px solid var(--color-line);
+  background: rgba(250, 247, 241, 0.9);
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
 }
 
 .contact-grid {
@@ -117,10 +119,10 @@ function getContactIcon(label: string) {
   display: grid;
   gap: 0.5rem;
   padding: 1.4rem;
-  border: 1px solid rgba(8, 42, 38, 0.12);
+  border: 1px solid var(--color-line);
   border-radius: 24px;
-  background: rgba(255, 251, 246, 0.88);
-  box-shadow: 0 18px 38px rgba(91, 57, 24, 0.06);
+  background: rgba(252, 250, 245, 0.9);
+  box-shadow: var(--shadow-soft);
   text-decoration: none;
 }
 
@@ -145,7 +147,7 @@ function getContactIcon(label: string) {
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #143632;
+  color: var(--color-primary-deep);
 }
 
 .contact-icon-mark-github {
@@ -167,14 +169,15 @@ function getContactIcon(label: string) {
 
 .contact-label {
   margin: 0;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.9rem;
 }
 
 .contact-value {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 1.2rem;
-  color: #143632;
+  color: var(--color-text);
   line-height: 1.5;
 }
 

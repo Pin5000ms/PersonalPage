@@ -77,7 +77,7 @@ const projectSectionCopy = computed(() => siteCopy.projectsSection)
 
 .page-kicker {
   margin: 0 0 0.75rem;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.82rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -85,13 +85,14 @@ const projectSectionCopy = computed(() => siteCopy.projectsSection)
 
 .page-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 4rem);
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .page-description {
   margin: 1rem 0 0;
-  color: #31534f;
+  color: var(--color-text-muted);
   line-height: 1.8;
 }
 </style>

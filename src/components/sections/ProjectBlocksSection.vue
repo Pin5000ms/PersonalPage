@@ -217,7 +217,7 @@ function getProjectToneClass(tone?: string) {
 
 .section-kicker {
   margin: 0 0 0.75rem;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -225,13 +225,14 @@ function getProjectToneClass(tone?: string) {
 
 .section-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 1.1;
 }
 
 .section-description {
   margin: 1rem 0 0;
-  color: #31534f;
+  color: var(--color-text-muted);
   line-height: 1.8;
 }
 
@@ -258,8 +259,8 @@ function getProjectToneClass(tone?: string) {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(228, 240, 234, 0.96), rgba(243, 232, 216, 0.92));
-  color: #0f5c53;
+  background: linear-gradient(180deg, rgba(236, 241, 237, 0.96), rgba(245, 239, 230, 0.92));
+  color: var(--color-primary-deep);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
@@ -271,8 +272,9 @@ function getProjectToneClass(tone?: string) {
 
 .group-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 1.3rem;
-  color: #143632;
+  color: var(--color-text);
 }
 
 .project-block {
@@ -280,10 +282,10 @@ function getProjectToneClass(tone?: string) {
   grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.15fr);
   gap: 1.25rem;
   padding: 1rem;
-  border: 1px solid rgba(8, 42, 38, 0.12);
+  border: 1px solid var(--color-line);
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 248, 239, 0.96), rgba(255, 255, 255, 0.82));
-  box-shadow: 0 18px 42px rgba(91, 57, 24, 0.08);
+  background: linear-gradient(180deg, rgba(252, 250, 245, 0.96), rgba(246, 242, 234, 0.88));
+  box-shadow: var(--shadow-card);
 }
 
 .project-media,
@@ -298,24 +300,24 @@ function getProjectToneClass(tone?: string) {
   overflow: hidden;
   min-height: 250px;
   border-radius: 22px;
-  border: 1px solid rgba(8, 42, 38, 0.1);
-  background: linear-gradient(135deg, #e6f2ec 0%, #f7efe3 100%);
+  border: 1px solid rgba(95, 125, 118, 0.1);
+  background: linear-gradient(135deg, #e8efeb 0%, #f4eee4 100%);
 }
 
 .project-preview-forest {
-  background: linear-gradient(135deg, #dcefe7 0%, #b7d8c6 50%, #f4eadf 100%);
+  background: linear-gradient(135deg, #e6eeea 0%, #c8d8d1 48%, #f2ede4 100%);
 }
 
 .project-preview-ocean {
-  background: linear-gradient(135deg, #d8edf6 0%, #acd6e8 48%, #eef7fb 100%);
+  background: linear-gradient(135deg, #e6efef 0%, #c4d5d4 48%, #f2f5f1 100%);
 }
 
 .project-preview-copper {
-  background: linear-gradient(135deg, #f5dfd2 0%, #ddb090 48%, #f8eee8 100%);
+  background: linear-gradient(135deg, #f2e8df 0%, #d8c1a8 48%, #f6f1e9 100%);
 }
 
 .project-preview-sunrise {
-  background: linear-gradient(135deg, #fae2c7 0%, #f2c08e 45%, #fff5ea 100%);
+  background: linear-gradient(135deg, #f1eadf 0%, #ddcdb6 45%, #faf6ef 100%);
 }
 
 .project-preview-image {
@@ -333,7 +335,7 @@ function getProjectToneClass(tone?: string) {
 
 .project-category {
   margin: 0;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.82rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -341,20 +343,21 @@ function getProjectToneClass(tone?: string) {
 
 .project-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 1.55rem;
-  color: #143632;
+  color: var(--color-text);
 }
 
 .project-summary,
 .project-outcome {
   margin: 0;
-  color: #31534f;
+  color: var(--color-text-muted);
   line-height: 1.78;
 }
 
 .project-outcome {
   padding-left: 1rem;
-  border-left: 3px solid rgba(15, 92, 83, 0.22);
+  border-left: 3px solid rgba(95, 125, 118, 0.24);
 }
 
 .project-detail-figure {
@@ -367,13 +370,13 @@ function getProjectToneClass(tone?: string) {
   display: block;
   width: 100%;
   border-radius: 20px;
-  border: 1px solid rgba(8, 42, 38, 0.1);
-  box-shadow: 0 16px 30px rgba(20, 54, 50, 0.08);
+  border: 1px solid rgba(95, 125, 118, 0.12);
+  box-shadow: 0 16px 30px rgba(88, 104, 97, 0.08);
 }
 
 .project-detail-caption {
   margin: 0;
-  color: #6f4d2b;
+  color: var(--color-accent);
   font-size: 0.88rem;
 }
 
@@ -387,18 +390,18 @@ function getProjectToneClass(tone?: string) {
 .project-metric {
   padding: 0.85rem;
   border-radius: 18px;
-  background: rgba(242, 224, 199, 0.4);
+  background: rgba(239, 231, 219, 0.72);
 }
 
 .project-metric-label {
   margin: 0;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.82rem;
 }
 
 .project-metric-value {
   margin: 0.35rem 0 0;
-  color: #143632;
+  color: var(--color-text);
   font-weight: 600;
 }
 
@@ -412,10 +415,10 @@ function getProjectToneClass(tone?: string) {
 }
 
 .project-stack-item {
-  --pill-border-color: rgba(15, 92, 83, 0.12);
-  --pill-background: rgba(228, 240, 234, 0.8);
-  --pill-background-hover: rgba(236, 246, 241, 0.94);
-  --pill-text: #0f5c53;
+  --pill-border-color: rgba(95, 125, 118, 0.16);
+  --pill-background: rgba(235, 241, 237, 0.82);
+  --pill-background-hover: rgba(242, 246, 243, 0.94);
+  --pill-text: var(--color-primary-deep);
   border-radius: 18px;
   line-height: 1.35;
 }
@@ -430,8 +433,9 @@ function getProjectToneClass(tone?: string) {
   min-height: 42px;
   padding: 0.7rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(15, 92, 83, 0.18);
-  color: #0f5c53;
+  border: 1px solid var(--color-line-strong);
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--color-primary-deep);
   text-decoration: none;
 }
 
