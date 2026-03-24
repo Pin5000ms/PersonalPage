@@ -2,7 +2,6 @@
 import AboutView from '../views/AboutView.vue'
 import ArticlesView from '../views/ArticlesView.vue'
 import ContactView from '../views/ContactView.vue'
-import InterviewView from '../views/InterviewView.vue'
 import ProjectDetailView from '../views/ProjectDetailView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 
@@ -36,12 +35,6 @@ export const router = createRouter({
       name: 'project-detail',
       component: ProjectDetailView,
       meta: { title: 'Project details' },
-    },
-    {
-      path: '/interview',
-      name: 'interview',
-      component: InterviewView,
-      meta: { title: 'Interview' },
     },
     {
       path: '/contact',

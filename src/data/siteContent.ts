@@ -59,16 +59,6 @@ export interface ArticleItem {
   imageTone: string
 }
 
-export interface InterviewItem {
-  company: string
-  role: LocalizedText
-  year: string
-  summary: LocalizedText
-  takeaways: LocalizedText[]
-  imageLabel: LocalizedText
-  imageTone: string
-}
-
 export interface ContactInfoItem {
   label: string
   value: string
@@ -93,11 +83,6 @@ export interface SiteCopy {
     description: LocalizedText
   }
   articlesPage: {
-    kicker: LocalizedText
-    title: LocalizedText
-    description: LocalizedText
-  }
-  interviewPage: {
     kicker: LocalizedText
     title: LocalizedText
     description: LocalizedText
@@ -135,11 +120,10 @@ export interface SiteCopy {
 
 export const siteCopy: SiteCopy = {
   nav: [
-    { label: { zh: 'About me (關於我)', en: 'About me' }, to: '/about', mark: '我' },
+    { label: { zh: 'About (關於我)', en: 'About' }, to: '/about', mark: '我' },
     { label: { zh: 'Articles (技術分享文章)', en: 'Articles' }, to: '/articles', mark: '文' },
     { label: { zh: 'Projects (作品集)', en: 'Projects' }, to: '/projects', mark: '作' },
-    { label: { zh: 'Interview (面試經驗)', en: 'Interview' }, to: '/interview', mark: '面' },
-    { label: { zh: 'Contact me (聯絡我)', en: 'Contact me' }, to: '/contact', mark: '聯' },
+    { label: { zh: 'Contact (聯絡我)', en: 'Contact' }, to: '/contact', mark: '聯' },
   ],
   languageSwitch: {
     zh: '中文',
@@ -170,24 +154,16 @@ export const siteCopy: SiteCopy = {
       en: 'Here I document implementation notes and technical write-ups so the thinking, trade-offs, and process behind my work are visible.',
     },
   },
-  interviewPage: {
-    kicker: { zh: 'Interview notes', en: 'Interview notes' },
-    title: { zh: '面試經驗', en: 'Interview experience' },
-    description: {
-      zh: '我把以往面試的過程和經驗整理在這裡，希望能給準備面試的人帶來一些幫助。',
-      en: 'I keep interview practice notes and retrospectives here so I can refine my answer structure and capture recurring patterns.',
-    },
-  },
   contactPage: {
     kicker: { zh: 'Contact', en: 'Contact' },
     title: { zh: '聯絡我', en: 'Contact me' },
     description: {
       zh: '如果你想聊作品合作、內容企劃或面試機會，可以從這邊找到我。',
-      en: 'If you would like to talk about frontend engineering, collaboration, content planning, or interview opportunities, feel free to reach out through the channels below.',
+      en: 'If you would like to talk about frontend engineering, collaboration, content planning, or new opportunities, feel free to reach out through the channels below.',
     },
     availability: {
       zh: '我目前在看新的工作機會、合作與技術內容交流。',
-      en: 'Currently open to international interviews, frontend collaboration, and technical content conversations.',
+      en: 'Currently open to new opportunities, frontend collaboration, and technical content conversations.',
     },
   },
   hero: {
@@ -499,40 +475,5 @@ export const articles: ArticleItem[] = [
     href: '#',
     imageLabel: { zh: 'AI Skill', en: '' },
     imageTone: 'forest',
-  },
-]
-
-export const interviews: InterviewItem[] = [
-  {
-    company: '',
-    role: { zh: '軟體工程師', en: '' },
-    year: '2025',
-    summary: {
-      zh: '',
-      en: '',
-    },
-    takeaways: [
-      { zh: '', en: '' },
-      { zh: '', en: '' },
-      { zh: '', en: '' },
-    ],
-    imageLabel: { zh: '面試過程', en: '' },
-    imageTone: 'plum',
-  },
-  {
-    company: '',
-    role: { zh: '軟體工程師', en: '' },
-    year: '2023',
-    summary: {
-      zh: '',
-      en: '',
-    },
-    takeaways: [
-      { zh: '', en: '' },
-      { zh: '', en: '' },
-      { zh: '', en: '' },
-    ],
-    imageLabel: { zh: '面試過程', en: '' },
-    imageTone: 'copper',
   },
 ]
