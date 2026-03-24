@@ -132,27 +132,27 @@ export const siteCopy: SiteCopy = {
     kicker: { zh: 'Projects overview', en: 'Projects overview' },
     title: { zh: '作品集', en: 'Projects' },
     description: {
-      zh: '這邊記錄我實際做過的專案，包含使用什麼技術和成果。',
-      en: 'This page focuses on my frontend projects, including product context, outcomes, technical decisions, and possible next steps.',
+      zh: '',
+      en: '',
     },
   },
   articlesPage: {
     kicker: { zh: 'Technical writing', en: 'Technical writing' },
     title: { zh: '技術分享文章', en: 'Technical articles' },
     description: {
-      zh: '這裡收錄一些我覺得值得紀錄的技術文章。',
-      en: 'Here I document implementation notes and technical write-ups so the thinking, trade-offs, and process behind my work are visible.',
+      zh: '',
+      en: '',
     },
   },
   contactPage: {
     kicker: { zh: 'Contact', en: 'Contact' },
     title: { zh: '聯絡我', en: 'Contact me' },
     description: {
-      zh: '如果你想聊作品合作、內容企劃或面試機會，可以從這邊找到我。',
-      en: 'If you would like to talk about frontend engineering, collaboration, content planning, or new opportunities, feel free to reach out through the channels below.',
+      zh: '',
+      en: '',
     },
     availability: {
-      zh: '我目前在看新的工作機會、合作與技術內容交流。',
+      zh: '如果你想聊作品合作或面試機會，可以從這邊找到我，我目前在看新的工作機會。',
       en: 'Currently open to new opportunities, frontend collaboration, and technical content conversations.',
     },
   },

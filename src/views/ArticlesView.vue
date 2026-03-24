@@ -2,12 +2,22 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import articlesBanner from '../assets/articles_banner.jpg'
+import { useLanguage } from '../composables/useLanguage'
 import { articles } from '../content/articles'
+import { siteCopy } from '../data/siteContent'
+
+const { locale } = useLanguage()
+
+function t(text: { zh: string; en: string }) {
+  return text[locale.value]
+}
+
+const pageCopy = computed(() => siteCopy.articlesPage)
 
 const articleCards = computed(() =>
   articles.map((article) => ({
     ...article,
-    formattedDate: new Intl.DateTimeFormat('zh-TW', {
+    formattedDate: new Intl.DateTimeFormat(locale.value === 'zh' ? 'zh-TW' : 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -23,11 +33,9 @@ const articleCards = computed(() =>
         <div class="page-banner-frame">
           <img class="page-banner-image" :src="articlesBanner" alt="Articles page banner" />
           <div class="page-banner-overlay">
-            <p class="page-kicker">Technical writing</p>
-            <h1 class="page-title">技術分享文章</h1>
-            <p class="page-description">
-              這裡整理我把實作過程、踩坑經驗與架構思考寫成文章的內容，維持作品集之外的長期輸出。
-            </p>
+            <p class="page-kicker">{{ t(pageCopy.kicker) }}</p>
+            <h1 class="page-title">{{ t(pageCopy.title) }}</h1>
+            <p class="page-description">{{ t(pageCopy.description) }}</p>
           </div>
         </div>
       </div>
@@ -51,7 +59,7 @@ const articleCards = computed(() =>
             {{ tag }}
           </li>
         </ul>
-        <p class="article-link">繼續閱讀</p>
+        <p class="article-link">{{ locale === 'zh' ? '繼續閱讀' : 'Read more' }}</p>
       </RouterLink>
     </section>
   </div>
@@ -277,7 +285,7 @@ const articleCards = computed(() =>
 }
 
 .article-link::after {
-  content: "→";
+  content: "->";
   display: inline-flex;
   align-items: center;
   justify-content: center;
