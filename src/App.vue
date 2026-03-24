@@ -258,6 +258,8 @@ onBeforeUnmount(() => {
   display: grid;
   gap: 0.85rem;
   padding: 0.9rem 0 1.4rem;
+  backface-visibility: hidden;
+  transform: translateZ(0);
   transition:
     padding 220ms ease,
     transform 220ms ease;
@@ -662,10 +664,16 @@ onBeforeUnmount(() => {
 
   .site-header {
     padding-bottom: 1rem;
+    transition: none;
   }
 
   .site-header-bar {
     padding: 0.65rem 0.7rem;
+    backdrop-filter: none;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
   }
 
   .site-main {
