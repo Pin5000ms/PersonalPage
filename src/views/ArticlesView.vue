@@ -43,7 +43,7 @@ const articleCards = computed(() =>
             {{ tag }}
           </li>
         </ul>
-        <p class="article-link">Read article</p>
+        <p class="article-link">繼續閱讀</p>
       </RouterLink>
     </section>
   </div>
