@@ -40,11 +40,12 @@ const sectionCopy = computed(() => siteCopy.projectsSection)
 <style scoped>
 .view-shell {
   display: grid;
-  gap: 2rem;
+  gap: 3.25rem;
 }
 
 .page-intro {
-  max-width: 56ch;
+  max-width: 62ch;
+  padding-top: 0.6rem;
 }
 
 .page-kicker {
@@ -63,9 +64,15 @@ const sectionCopy = computed(() => siteCopy.projectsSection)
 }
 
 .page-description {
-  margin: 1rem 0 0;
+  margin: 1.25rem 0 0;
   color: var(--color-text-muted);
-  line-height: 1.8;
+  line-height: 1.9;
+}
+
+@media (max-width: 720px) {
+  .view-shell {
+    gap: 2.5rem;
+  }
 }
 </style>
 

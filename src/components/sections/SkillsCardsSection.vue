@@ -168,6 +168,11 @@ const totalTags = computed(() =>
   background: var(--skills-panel);
   box-shadow: var(--skills-shadow);
   overflow: hidden;
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background-color 260ms ease;
 }
 
 .skill-card::before {
@@ -180,6 +185,12 @@ const totalTags = computed(() =>
   opacity: 0.95;
   animation: skillAccentIn 0.7s ease-out both;
   animation-delay: var(--card-accent-delay);
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(95, 125, 118, 0.2);
+  box-shadow: 0 30px 52px rgba(88, 104, 97, 0.12);
 }
 
 .skill-card-header {
@@ -204,6 +215,11 @@ const totalTags = computed(() =>
   font-family: var(--font-display);
   font-size: 1.28rem;
   line-height: 1.2;
+  transition: color 220ms ease;
+}
+
+.skill-card:hover .skill-title {
+  color: var(--color-primary-deep);
 }
 
 .skill-summary {

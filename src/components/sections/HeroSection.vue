@@ -136,7 +136,7 @@ onBeforeUnmount(() => {
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr);
-  gap: 2rem;
+  gap: 2.35rem;
   align-items: stretch;
 }
 
@@ -149,11 +149,11 @@ onBeforeUnmount(() => {
 }
 
 .hero-copy {
-  padding: 2rem;
+  padding: 2.3rem;
 }
 
 .hero-panel {
-  padding: 1.5rem;
+  padding: 1.7rem;
   align-self: end;
 }
 
@@ -256,14 +256,14 @@ onBeforeUnmount(() => {
 .hero-mission {
   max-width: 56ch;
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.95;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-  margin-top: 1.5rem;
+  margin-top: 1.8rem;
 }
 
 .hero-link {
@@ -274,11 +274,15 @@ onBeforeUnmount(() => {
   padding: 0.75rem 1.2rem;
   border-radius: 999px;
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease;
 }
 
 .hero-link:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
 }
 
 .hero-link-primary {
@@ -296,6 +300,7 @@ onBeforeUnmount(() => {
 .hero-points {
   margin: 0;
   padding-left: 1.25rem;
+  line-height: 1.9;
 }
 
 .hero-point + .hero-point {
@@ -305,6 +310,7 @@ onBeforeUnmount(() => {
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .hero-heading {
@@ -318,6 +324,11 @@ onBeforeUnmount(() => {
 
   .hero-title {
     white-space: normal;
+  }
+
+  .hero-copy,
+  .hero-panel {
+    padding: 1.6rem;
   }
 }
 </style>

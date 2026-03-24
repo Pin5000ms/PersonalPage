@@ -65,13 +65,18 @@ function getProjectToneClass(tone?: string) {
         >
           <div class="project-media">
             <div class="project-preview" :class="getProjectToneClass(project.coverImageTone)">
-              <img
-                v-if="project.coverImageSrc"
-                class="project-preview-image"
-                :src="project.coverImageSrc"
-                :alt="project.coverImageAlt ? t(project.coverImageAlt) : t(project.title)"
-                loading="lazy"
-              />
+              <div class="project-preview-frame">
+                <span class="project-preview-crest">{{ t(project.category) }}</span>
+                <div class="project-preview-surface">
+                  <img
+                    v-if="project.coverImageSrc"
+                    class="project-preview-image"
+                    :src="project.coverImageSrc"
+                    :alt="project.coverImageAlt ? t(project.coverImageAlt) : t(project.title)"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
 
             <figure v-if="project.detailImageSrc" class="project-detail-figure">
@@ -142,13 +147,18 @@ function getProjectToneClass(tone?: string) {
         >
           <div class="project-media">
             <div class="project-preview" :class="getProjectToneClass(project.coverImageTone)">
-              <img
-                v-if="project.coverImageSrc"
-                class="project-preview-image"
-                :src="project.coverImageSrc"
-                :alt="project.coverImageAlt ? t(project.coverImageAlt) : t(project.title)"
-                loading="lazy"
-              />
+              <div class="project-preview-frame">
+                <span class="project-preview-crest">{{ t(project.category) }}</span>
+                <div class="project-preview-surface">
+                  <img
+                    v-if="project.coverImageSrc"
+                    class="project-preview-image"
+                    :src="project.coverImageSrc"
+                    :alt="project.coverImageAlt ? t(project.coverImageAlt) : t(project.title)"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
 
             <figure v-if="project.detailImageSrc" class="project-detail-figure">
@@ -286,6 +296,16 @@ function getProjectToneClass(tone?: string) {
   border-radius: 28px;
   background: linear-gradient(180deg, rgba(252, 250, 245, 0.96), rgba(246, 242, 234, 0.88));
   box-shadow: var(--shadow-card);
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.project-block:hover {
+  transform: translateY(-2px);
+  border-color: rgba(95, 125, 118, 0.2);
+  box-shadow: 0 30px 52px rgba(88, 104, 97, 0.12);
 }
 
 .project-media,
@@ -302,6 +322,66 @@ function getProjectToneClass(tone?: string) {
   border-radius: 22px;
   border: 1px solid rgba(95, 125, 118, 0.1);
   background: linear-gradient(135deg, #e8efeb 0%, #f4eee4 100%);
+  padding: 0.9rem;
+}
+
+.project-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 26%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.38), transparent 30%);
+  pointer-events: none;
+}
+
+.project-preview-frame {
+  position: relative;
+  display: grid;
+  min-height: 250px;
+  height: 100%;
+  padding: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  border-radius: 18px;
+  background: rgba(255, 252, 247, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 14px 24px rgba(88, 104, 97, 0.08);
+}
+
+.project-preview-surface {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.project-preview-surface::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(38, 57, 54, 0.1));
+  pointer-events: none;
+}
+
+.project-preview-crest {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.54);
+  border-radius: 999px;
+  background: rgba(250, 247, 241, 0.7);
+  backdrop-filter: blur(6px);
+  color: rgba(68, 92, 86, 0.88);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .project-preview-forest {
@@ -326,6 +406,13 @@ function getProjectToneClass(tone?: string) {
   height: 100%;
   min-height: 250px;
   object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 280ms ease;
+}
+
+.project-block:hover .project-preview-image {
+  transform: scale(1.04);
+  filter: saturate(0.94) contrast(1.02);
 }
 
 .project-head {
@@ -346,6 +433,12 @@ function getProjectToneClass(tone?: string) {
   font-family: var(--font-display);
   font-size: 1.55rem;
   color: var(--color-text);
+  line-height: 1.28;
+  transition: color 220ms ease;
+}
+
+.project-block:hover .project-title {
+  color: var(--color-primary-deep);
 }
 
 .project-summary,
@@ -372,6 +465,16 @@ function getProjectToneClass(tone?: string) {
   border-radius: 20px;
   border: 1px solid rgba(95, 125, 118, 0.12);
   box-shadow: 0 16px 30px rgba(88, 104, 97, 0.08);
+  transition:
+    transform 320ms ease,
+    box-shadow 320ms ease,
+    border-color 320ms ease;
+}
+
+.project-detail-image:hover {
+  transform: translateY(-2px);
+  border-color: rgba(95, 125, 118, 0.18);
+  box-shadow: 0 22px 34px rgba(88, 104, 97, 0.12);
 }
 
 .project-detail-caption {
@@ -437,6 +540,18 @@ function getProjectToneClass(tone?: string) {
   background: rgba(255, 255, 255, 0.48);
   color: var(--color-primary-deep);
   text-decoration: none;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.project-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(95, 125, 118, 0.24);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 12px 18px rgba(88, 104, 97, 0.1);
 }
 
 @media (max-width: 980px) {

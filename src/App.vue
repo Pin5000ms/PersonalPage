@@ -188,7 +188,7 @@ onBeforeUnmount(() => {
 .page-shell {
   width: min(1120px, calc(100vw - 2rem));
   margin: 0 auto;
-  padding: 1.2rem 0 4.5rem;
+  padding: 1.4rem 0 5.5rem;
 }
 
 .site-header {
@@ -440,7 +440,7 @@ onBeforeUnmount(() => {
 
 .site-main {
   display: grid;
-  gap: 3.5rem;
+  gap: 4.75rem;
 }
 
 .mobile-nav-enter-active,
@@ -474,6 +474,16 @@ onBeforeUnmount(() => {
 
   .menu-toggle {
     display: inline-flex;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    padding-bottom: 4.25rem;
+  }
+
+  .site-main {
+    gap: 3.5rem;
   }
 }
 </style>

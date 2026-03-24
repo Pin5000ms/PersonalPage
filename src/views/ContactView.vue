@@ -66,11 +66,12 @@ function getContactIcon(label: string) {
 <style scoped>
 .view-shell {
   display: grid;
-  gap: 2rem;
+  gap: 3.25rem;
 }
 
 .page-intro {
-  max-width: 56ch;
+  max-width: 62ch;
+  padding-top: 0.6rem;
 }
 
 .page-kicker {
@@ -89,14 +90,14 @@ function getContactIcon(label: string) {
 }
 
 .page-description {
-  margin: 1rem 0 0;
+  margin: 1.25rem 0 0;
   color: var(--color-text-muted);
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 .contact-panel {
   display: grid;
-  gap: 1rem;
+  gap: 1.35rem;
 }
 
 .contact-availability {
@@ -124,6 +125,18 @@ function getContactIcon(label: string) {
   background: rgba(252, 250, 245, 0.9);
   box-shadow: var(--shadow-soft);
   text-decoration: none;
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    background-color 240ms ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(95, 125, 118, 0.2);
+  background: rgba(255, 253, 248, 0.96);
+  box-shadow: 0 24px 40px rgba(88, 104, 97, 0.12);
 }
 
 .contact-card-top {
@@ -179,11 +192,22 @@ function getContactIcon(label: string) {
   font-size: 1.2rem;
   color: var(--color-text);
   line-height: 1.5;
+  transition: color 220ms ease;
+}
+
+.contact-card:hover .contact-value {
+  color: var(--color-primary-deep);
 }
 
 @media (max-width: 860px) {
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .view-shell {
+    gap: 2.5rem;
   }
 }
 </style>

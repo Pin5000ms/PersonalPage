@@ -65,16 +65,16 @@ const otherProjects = computed(() => props.items.filter((item) => item.group ===
 <style scoped>
 .portfolio {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .section-heading {
-  max-width: 65ch;
+  max-width: 62ch;
 }
 
 .section-kicker {
   margin: 0 0 0.75rem;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -82,20 +82,21 @@ const otherProjects = computed(() => props.items.filter((item) => item.group ===
 
 .section-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(1.9rem, 4vw, 3rem);
-  line-height: 1.1;
+  line-height: 1.12;
 }
 
 .section-description {
-  margin: 1rem 0 0;
-  color: #31534f;
-  line-height: 1.8;
+  margin: 1.15rem 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.9;
 }
 
 .portfolio-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1.5rem;
   align-items: stretch;
 }
 
