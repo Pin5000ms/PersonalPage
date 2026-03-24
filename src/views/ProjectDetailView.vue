@@ -152,6 +152,7 @@ const project = computed(() => getProjectBySlug(String(route.params.slug ?? ''))
 .stack-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.55rem;
   margin: 0;
   padding: 0;
@@ -159,11 +160,10 @@ const project = computed(() => getProjectBySlug(String(route.params.slug ?? ''))
 }
 
 .stack-item {
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  background: #e4f0ea;
-  color: #0f5c53;
-  font-size: 0.9rem;
+  --pill-border-color: rgba(15, 92, 83, 0.12);
+  --pill-background: #e4f0ea;
+  --pill-background-hover: #edf6f1;
+  --pill-text: #0f5c53;
 }
 
 .metrics-grid {

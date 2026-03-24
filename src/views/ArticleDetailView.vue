@@ -105,6 +105,7 @@ const formattedDate = computed(() => {
 .tag-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.75rem;
   margin: 0;
   padding: 0;
@@ -112,11 +113,10 @@ const formattedDate = computed(() => {
 }
 
 .tag-item {
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(138, 75, 34, 0.08);
-  color: #8a4b22;
-  font-size: 0.9rem;
+  --pill-border-color: rgba(138, 75, 34, 0.14);
+  --pill-background: rgba(138, 75, 34, 0.08);
+  --pill-background-hover: rgba(138, 75, 34, 0.14);
+  --pill-text: #8a4b22;
 }
 
 .article-content {

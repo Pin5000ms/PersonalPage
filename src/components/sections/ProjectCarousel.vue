@@ -499,18 +499,12 @@ onBeforeUnmount(() => {
 }
 
 .project-stack-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.5rem;
-  padding: 0.55rem 0.8rem;
-  border: 1px solid rgba(15, 92, 83, 0.12);
+  --pill-border-color: rgba(15, 92, 83, 0.12);
+  --pill-background: rgba(228, 240, 234, 0.8);
+  --pill-background-hover: rgba(236, 246, 241, 0.94);
+  --pill-text: #0f5c53;
   border-radius: 18px;
-  background: rgba(228, 240, 234, 0.8);
-  color: #0f5c53;
-  font-size: 0.9rem;
   line-height: 1.35;
-  text-align: center;
 }
 
 .project-links {

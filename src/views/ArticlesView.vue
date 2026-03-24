@@ -121,6 +121,7 @@ const articleCards = computed(() =>
 .tag-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.65rem;
   margin: 0;
   padding: 0;
@@ -128,10 +129,10 @@ const articleCards = computed(() =>
 }
 
 .tag-item {
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(138, 75, 34, 0.08);
-  color: #8a4b22;
+  --pill-border-color: rgba(138, 75, 34, 0.14);
+  --pill-background: rgba(138, 75, 34, 0.08);
+  --pill-background-hover: rgba(138, 75, 34, 0.14);
+  --pill-text: #8a4b22;
   font-size: 0.85rem;
 }
 

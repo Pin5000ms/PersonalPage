@@ -211,6 +211,7 @@ const totalTags = computed(() =>
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.6rem;
   margin: 0;
   padding: 0;
@@ -218,12 +219,10 @@ const totalTags = computed(() =>
 }
 
 .skill-tag {
-  padding: 0.5rem 0.82rem;
-  border: 1px solid rgba(201, 125, 54, 0.18);
-  border-radius: 999px;
-  background: rgba(255, 248, 238, 0.88);
-  color: #6b441f;
-  font-size: 0.9rem;
+  --pill-border-color: rgba(201, 125, 54, 0.18);
+  --pill-background: rgba(255, 248, 238, 0.88);
+  --pill-background-hover: rgba(255, 242, 227, 0.98);
+  --pill-text: #6b441f;
 }
 
 @keyframes skillAccentIn {

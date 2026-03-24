@@ -159,6 +159,7 @@ const {
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.55rem;
   margin: 1rem 0 0;
   padding: 0;
@@ -166,11 +167,10 @@ const {
 }
 
 .skill-tag {
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  background: #f2e0c7;
-  color: #6b441f;
-  font-size: 0.9rem;
+  --pill-border-color: rgba(201, 125, 54, 0.18);
+  --pill-background: #f2e0c7;
+  --pill-background-hover: #f6e7d2;
+  --pill-text: #6b441f;
 }
 
 .track-hint {
