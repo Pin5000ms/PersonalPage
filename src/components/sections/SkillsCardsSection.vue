@@ -200,14 +200,20 @@ const totalTags = computed(() =>
 
 .skill-index {
   display: inline-flex;
-  width: fit-content;
-  padding: 0.35rem 0.65rem;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
   border-radius: 999px;
   background: rgba(95, 125, 118, 0.1);
   color: var(--color-primary-deep);
-  font-size: 0.82rem;
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 .skill-title {
