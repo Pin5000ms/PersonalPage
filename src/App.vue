@@ -264,9 +264,14 @@ onBeforeUnmount(() => {
 }
 
 .site-mark-text {
-  display: inline-block;
-  font-size: 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mark);
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
   line-height: 1;
+  min-height: 1em;
 }
 
 .site-nav {

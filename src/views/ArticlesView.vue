@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import articlesBanner from '../assets/articles_banner.jpg'
@@ -59,7 +59,13 @@ const articleCards = computed(() =>
             {{ tag }}
           </li>
         </ul>
-        <p class="article-link">{{ locale === 'zh' ? '繼續閱讀' : 'Read more' }}</p>
+        <p class="article-link">
+          <span>{{ locale === 'zh' ? '繼續閱讀' : 'Read more' }}</span>
+          <span class="article-link-icon" aria-hidden="true">
+            <span class="article-link-icon-line" />
+            <span class="article-link-icon-head" />
+          </span>
+        </p>
       </RouterLink>
     </section>
   </div>
@@ -269,7 +275,7 @@ const articleCards = computed(() =>
   width: fit-content;
   min-width: 11.5rem;
   margin: 0.75rem 0 0;
-  padding: 0.82rem 1rem;
+  padding: 0.45rem 1rem;
   border: 1px solid rgba(95, 125, 118, 0.18);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.72);
@@ -281,32 +287,53 @@ const articleCards = computed(() =>
     transform 220ms ease,
     border-color 220ms ease,
     background-color 220ms ease,
-    box-shadow 220ms ease;
+    box-shadow 220ms ease,
+    color 220ms ease;
 }
 
-.article-link::after {
-  content: "->";
+.article-link-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 999px;
   background: rgba(95, 125, 118, 0.1);
-  font-size: 0.95rem;
-  transition: transform 220ms ease, background-color 220ms ease;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.article-link-icon-line {
+  width: 0.82rem;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateX(0.12rem);
+}
+
+.article-link-icon-head {
+  width: 0.46rem;
+  height: 0.46rem;
+  margin-left: -0.08rem;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .article-card:hover .article-link {
   transform: translateY(-1px);
   border-color: rgba(95, 125, 118, 0.24);
   background: rgba(255, 255, 255, 0.92);
+  color: #2f4c46;
   box-shadow: 0 14px 24px rgba(88, 104, 97, 0.12);
 }
 
-.article-card:hover .article-link::after {
+.article-card:hover .article-link-icon {
   transform: translateX(2px);
   background: rgba(95, 125, 118, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }
 
 @media (max-width: 860px) {
@@ -351,3 +378,5 @@ const articleCards = computed(() =>
   }
 }
 </style>
+
+

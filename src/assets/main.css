@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
 
 :root {
   --font-body: "Zen Kaku Gothic New", "Noto Sans TC", sans-serif;
   --font-display: "Shippori Mincho", "Noto Serif TC", serif;
+  --font-mark: "Ma Shan Zheng", "DFKai-SB", "BiauKai", "KaiTi", serif;
   --color-bg: #f5f3eb;
   --color-surface: rgba(252, 250, 245, 0.86);
   --color-surface-strong: #f9f7f1;

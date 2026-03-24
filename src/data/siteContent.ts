@@ -177,7 +177,7 @@ export const siteCopy: SiteCopy = {
   projectsSection: {
     kicker: { zh: 'Projects', en: 'Projects' },
     title: {
-      zh: '這邊是我做過的一些專案',
+      zh: '我做過的專案',
       en: 'Clear project storytelling is more persuasive than listing technologies alone',
     },
     description: {
