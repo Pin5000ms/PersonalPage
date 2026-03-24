@@ -287,10 +287,10 @@ export const projects: ProjectItem[] = [
     slug: 'unsupervised-clustering-of-solder-joints',
     group: 'ai',
     title: { zh: '焊點非監督式分群', en: 'Unsupervised Clustering of Solder Joints' },
-    category: { zh: '電腦視覺 / AI 缺陷分析', en: 'Computer Vision / AI Defect Analysis' },
+    category: { zh: '電腦視覺 / AI 分群', en: 'Computer Vision / AI Clustering' },
     summary: {
-      zh: '我建立了一套非監督式缺陷分群流程，先利用 Segment Anything Model（SAM）對焊點進行分割，再透過 autoencoder 萃取 128 維潛在特徵，最後使用 DBSCAN 在無標註資料的情況下自動將焊點型態分群。',
-      en: 'Developed an unsupervised defect clustering pipeline by segmenting solder joints using Segment Anything Model (SAM), extracting 128-dimensional latent embeddings with an autoencoder, and applying DBSCAN clustering to group patterns without labeled data.',
+      zh: '我建立了一套非監督式分群流程，先利用 Segment Anything Model（SAM）對焊點進行分割，再透過 autoencoder 萃取 128 維潛在特徵，最後使用 DBSCAN 在無標註資料的情況下自動將焊點型態分群。',
+      en: 'Developed an unsupervised clustering pipeline by segmenting solder joints using Segment Anything Model (SAM), extracting 128-dimensional latent embeddings with an autoencoder, and applying DBSCAN clustering to group patterns without labeled data.',
     },
     outcome: {
       zh: '這個專案展示了我把電腦視覺、深度學習與非監督式學習串成完整分析流程的能力，能在不標註焊點類型的情況下，將不同型態的焊點分群。',
