@@ -322,7 +322,9 @@ function getProjectToneClass(tone?: string) {
   border-radius: 22px;
   border: 1px solid rgba(95, 125, 118, 0.1);
   background: linear-gradient(135deg, #e8efeb 0%, #f4eee4 100%);
-  padding: 0.9rem;
+  background-clip: padding-box;
+  isolation: isolate;
+  padding: 0.65rem;
 }
 
 .project-preview::before {
@@ -340,21 +342,19 @@ function getProjectToneClass(tone?: string) {
   display: grid;
   min-height: 250px;
   height: 100%;
-  padding: 0.65rem;
-  border: 1px solid rgba(255, 255, 255, 0.46);
-  border-radius: 18px;
-  background: rgba(255, 252, 247, 0.24);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.42),
-    0 14px 24px rgba(88, 104, 97, 0.08);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
 }
 
 .project-preview-surface {
   position: relative;
   overflow: hidden;
   min-height: 100%;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .project-preview-surface::after {
@@ -368,8 +368,8 @@ function getProjectToneClass(tone?: string) {
 
 .project-preview-crest {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.9rem;
+  left: 0.9rem;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -567,13 +567,12 @@ function getProjectToneClass(tone?: string) {
   }
 
   .project-preview {
-    padding: 0.7rem;
+    padding: 0.55rem;
     min-height: 210px;
   }
 
   .project-preview-frame {
     min-height: 210px;
-    padding: 0.5rem;
   }
 
   .project-preview-surface,
