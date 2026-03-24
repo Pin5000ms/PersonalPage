@@ -40,7 +40,7 @@ const totalTags = computed(() =>
         </article>
         <article class="overview-card">
           <span class="overview-value">{{ totalTags }}</span>
-          <span class="overview-label">{{ locale === 'zh' ? '核心工具' : 'Core tools' }}</span>
+          <span class="overview-label">{{ locale === 'zh' ? '核心技能' : 'Core skills' }}</span>
         </article>
       </div>
     </div>
