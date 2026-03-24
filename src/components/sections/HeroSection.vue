@@ -192,7 +192,7 @@ onBeforeUnmount(() => {
 
 .hero-title-wrap {
   position: relative;
-  padding: 1.35rem 1.35rem 1.65rem;
+  padding: 1.35rem 1.55rem 1.65rem 1.35rem;
   border: 1px solid rgba(95, 125, 118, 0.18);
   border-radius: 22px;
   background:
@@ -223,13 +223,14 @@ onBeforeUnmount(() => {
 .hero-title {
   display: inline-block;
   margin: 0;
+  padding-right: 0.18em;
   padding-bottom: 0.08em;
   color: #fbfaf7;
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 5vw, 3.8rem);
+  font-size: clamp(1.6rem, 4.6vw, 3.45rem);
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
   white-space: nowrap;
   text-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
 }
