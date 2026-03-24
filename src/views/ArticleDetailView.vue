@@ -168,6 +168,17 @@ const formattedDate = computed(() => {
   color: inherit;
 }
 
+.article-content :deep(figure) {
+  margin: 1.5rem 0;
+}
+
+.article-content :deep(img) {
+  width: 100%;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(8, 42, 38, 0.1);
+  box-shadow: 0 18px 38px rgba(91, 57, 24, 0.08);
+}
+
 .article-content :deep(a) {
   color: #8a4b22;
 }

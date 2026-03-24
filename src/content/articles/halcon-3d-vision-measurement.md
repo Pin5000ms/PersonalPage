@@ -18,6 +18,8 @@ slug: halcon-3d-vision-measurement
 - 高度量測
 - 體積量測
 - 缺陷表面分析
+![示意圖](./images/demo.png)
+
 
 ## 實作重點
 

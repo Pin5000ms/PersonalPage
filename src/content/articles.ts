@@ -18,6 +18,11 @@ const articleModules = import.meta.glob('./articles/*.md', {
   import: 'default',
 }) as Record<string, string>
 
+const articleAssetModules = import.meta.glob('./articles/**/*.{png,jpg,jpeg,gif,webp,svg,avif}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
 function escapeHtml(value: string) {
   return value
     .replaceAll('&', '&amp;')
@@ -88,6 +93,36 @@ function parseFrontmatter(source: string) {
   }
 }
 
+function normalizePathSegments(value: string) {
+  const segments = value.split('/')
+  const normalized: string[] = []
+
+  for (const segment of segments) {
+    if (!segment || segment === '.') {
+      continue
+    }
+
+    if (segment === '..') {
+      normalized.pop()
+      continue
+    }
+
+    normalized.push(segment)
+  }
+
+  return normalized
+}
+
+function resolveArticleImageSource(articlePath: string, source: string) {
+  if (/^(?:https?:)?\/\//.test(source) || source.startsWith('data:') || source.startsWith('/')) {
+    return source
+  }
+
+  const articleDirectory = articlePath.split('/').slice(0, -1)
+  const resolvedPath = [...articleDirectory, ...normalizePathSegments(source)].join('/')
+  return articleAssetModules[resolvedPath] ?? source
+}
+
 function renderInlineMarkdown(text: string) {
   return escapeHtml(text)
     .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -96,7 +131,7 @@ function renderInlineMarkdown(text: string) {
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
 }
 
-function renderMarkdownToHtml(source: string) {
+function renderMarkdownToHtml(source: string, articlePath: string) {
   const lines = source.replace(/\r\n/g, '\n').split('\n')
   const html: string[] = []
   let inList = false
@@ -142,6 +177,17 @@ function renderMarkdownToHtml(source: string) {
 
     if (!line.trim()) {
       flushLists()
+      continue
+    }
+
+    const imageMatch = line.trim().match(/^!\[([^\]]*)\]\(([^)]+)\)$/)
+    if (imageMatch) {
+      flushLists()
+      const [, altText, rawSource] = imageMatch
+      const resolvedSource = resolveArticleImageSource(articlePath, rawSource.trim())
+      html.push(
+        `<figure><img src="${escapeHtml(resolvedSource)}" alt="${escapeHtml(altText.trim())}" loading="lazy" /></figure>`,
+      )
       continue
     }
 
@@ -195,7 +241,7 @@ function estimateReadingMinutes(content: string) {
   return Math.max(1, Math.ceil(wordCount / 180))
 }
 
-function buildArticleEntry(rawSource: string): ArticleEntry {
+function buildArticleEntry(articlePath: string, rawSource: string): ArticleEntry {
   const { frontmatter, content } = parseFrontmatter(rawSource)
 
   if (!frontmatter.title || !frontmatter.date || !frontmatter.summary || !frontmatter.slug) {
@@ -205,13 +251,13 @@ function buildArticleEntry(rawSource: string): ArticleEntry {
   return {
     ...frontmatter,
     content,
-    html: renderMarkdownToHtml(content),
+    html: renderMarkdownToHtml(content, articlePath),
     readingMinutes: estimateReadingMinutes(content),
   }
 }
 
-export const articles = Object.values(articleModules)
-  .map((rawSource) => buildArticleEntry(rawSource))
+export const articles = Object.entries(articleModules)
+  .map(([articlePath, rawSource]) => buildArticleEntry(articlePath, rawSource))
   .sort((left, right) => right.date.localeCompare(left.date))
 
 export function getArticleBySlug(slug: string) {
