@@ -150,11 +150,14 @@ onBeforeUnmount(() => {
 
 .hero-copy {
   padding: 2.3rem;
+  animation: heroFadeUp 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero-panel {
   padding: 1.7rem;
   align-self: end;
+  animation: heroFadeUp 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 140ms;
 }
 
 .hero-kicker,
@@ -183,6 +186,8 @@ onBeforeUnmount(() => {
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(241, 236, 227, 0.92) 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  animation: heroSoftFloat 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 120ms;
 }
 
 .hero-title-wrap {
@@ -196,6 +201,7 @@ onBeforeUnmount(() => {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.16),
     0 18px 30px rgba(95, 125, 118, 0.18);
+  animation: heroSoftFloat 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero-title-copy {
@@ -252,6 +258,24 @@ onBeforeUnmount(() => {
   font-size: 1.08rem;
 }
 
+.hero-role,
+.hero-intro,
+.hero-mission {
+  animation: heroFadeUp 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-role {
+  animation-delay: 180ms;
+}
+
+.hero-intro {
+  animation-delay: 240ms;
+}
+
+.hero-mission {
+  animation-delay: 300ms;
+}
+
 .hero-intro,
 .hero-mission {
   max-width: 56ch;
@@ -264,6 +288,8 @@ onBeforeUnmount(() => {
   flex-wrap: wrap;
   gap: 0.9rem;
   margin-top: 1.8rem;
+  animation: heroFadeUp 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 340ms;
 }
 
 .hero-link {
@@ -303,8 +329,52 @@ onBeforeUnmount(() => {
   line-height: 1.9;
 }
 
+.hero-point {
+  animation: heroFadeUp 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-point:nth-child(1) {
+  animation-delay: 220ms;
+}
+
+.hero-point:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.hero-point:nth-child(3) {
+  animation-delay: 380ms;
+}
+
+.hero-point:nth-child(4) {
+  animation-delay: 460ms;
+}
+
 .hero-point + .hero-point {
   margin-top: 0.75rem;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSoftFloat {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 860px) {
@@ -329,6 +399,20 @@ onBeforeUnmount(() => {
   .hero-copy,
   .hero-panel {
     padding: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .hero-panel,
+  .hero-avatar-wrap,
+  .hero-title-wrap,
+  .hero-role,
+  .hero-intro,
+  .hero-mission,
+  .hero-actions,
+  .hero-point {
+    animation: none !important;
   }
 }
 </style>

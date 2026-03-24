@@ -666,6 +666,31 @@ onBeforeUnmount(() => {
     align-items: flex-start;
   }
 
+  .project-card {
+    padding: 0.8rem;
+  }
+
+  .project-preview {
+    padding: 0.7rem;
+  }
+
+  .project-preview-frame {
+    min-height: 200px;
+    padding: 0.5rem;
+  }
+
+  .project-preview-surface,
+  .project-preview-image,
+  .project-preview-fallback {
+    min-height: 200px;
+  }
+
+  .project-preview-crest {
+    top: 0.85rem;
+    left: 0.85rem;
+    font-size: 0.64rem;
+  }
+
   .project-metrics,
   .project-stack {
     grid-template-columns: 1fr;

@@ -20,7 +20,9 @@ const articleCards = computed(() =>
     <section class="page-intro">
       <p class="page-kicker">Technical writing</p>
       <h1 class="page-title">技術分享文章</h1>
-      <p class="page-description">這裡收錄我把實作經驗整理成文章的內容。</p>
+      <p class="page-description">
+        這裡整理我把實作過程、踩坑經驗與架構思考寫成文章的內容，維持作品集之外的長期輸出。
+      </p>
     </section>
 
     <section class="article-grid">
@@ -30,7 +32,10 @@ const articleCards = computed(() =>
         class="article-card"
         :to="`/articles/${article.slug}`"
       >
-        <p class="article-date">{{ article.formattedDate }}</p>
+        <div class="article-card-top">
+          <p class="article-date">{{ article.formattedDate }}</p>
+          <span class="article-reading">{{ article.readingMinutes }} min</span>
+        </div>
         <h2 class="article-title">{{ article.title }}</h2>
         <p class="article-summary">{{ article.summary }}</p>
         <ul class="tag-list">
@@ -47,16 +52,17 @@ const articleCards = computed(() =>
 <style scoped>
 .view-shell {
   display: grid;
-  gap: 2rem;
+  gap: 3.25rem;
 }
 
 .page-intro {
-  max-width: 60ch;
+  max-width: 62ch;
+  padding-top: 0.6rem;
 }
 
 .page-kicker {
   margin: 0 0 0.75rem;
-  color: #8a4b22;
+  color: var(--color-accent);
   font-size: 0.82rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -64,58 +70,91 @@ const articleCards = computed(() =>
 
 .page-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 4rem);
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .page-description {
-  margin: 1rem 0 0;
-  color: #31534f;
-  line-height: 1.8;
+  margin: 1.25rem 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.9;
 }
 
 .article-grid {
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
 .article-card {
   display: grid;
-  gap: 0.85rem;
-  padding: 1.4rem;
-  border: 1px solid rgba(49, 83, 79, 0.12);
-  border-radius: 1.4rem;
-  background: rgba(255, 250, 242, 0.88);
+  gap: 1rem;
+  padding: 1.6rem;
+  border: 1px solid var(--color-line);
+  border-radius: 1.7rem;
+  background:
+    radial-gradient(circle at top right, rgba(223, 234, 228, 0.28), transparent 30%),
+    linear-gradient(180deg, rgba(252, 250, 245, 0.94), rgba(246, 242, 234, 0.9));
+  box-shadow: var(--shadow-soft);
   text-decoration: none;
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    background-color 240ms ease;
 }
 
 .article-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(138, 75, 34, 0.3);
-  box-shadow: 0 20px 40px rgba(31, 48, 45, 0.08);
+  transform: translateY(-3px);
+  border-color: rgba(95, 125, 118, 0.2);
+  box-shadow: 0 28px 48px rgba(88, 104, 97, 0.12);
+}
+
+.article-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .article-date {
   margin: 0;
-  color: #5c6f6a;
+  color: var(--color-text-muted);
   font-size: 0.92rem;
+}
+
+.article-reading {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid rgba(183, 141, 100, 0.18);
+  border-radius: 999px;
+  background: rgba(250, 246, 239, 0.84);
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .article-title {
   margin: 0;
-  color: #1f302d;
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  line-height: 1.2;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
+  line-height: 1.28;
+  transition: color 220ms ease;
+}
+
+.article-card:hover .article-title {
+  color: var(--color-primary-deep);
 }
 
 .article-summary {
   margin: 0;
-  color: #31534f;
-  line-height: 1.8;
+  color: var(--color-text-muted);
+  line-height: 1.85;
 }
 
 .tag-list {
@@ -129,16 +168,84 @@ const articleCards = computed(() =>
 }
 
 .tag-item {
-  --pill-border-color: rgba(138, 75, 34, 0.14);
-  --pill-background: rgba(138, 75, 34, 0.08);
-  --pill-background-hover: rgba(138, 75, 34, 0.14);
-  --pill-text: #8a4b22;
+  --pill-border-color: rgba(183, 141, 100, 0.2);
+  --pill-background: rgba(250, 246, 239, 0.92);
+  --pill-background-hover: rgba(245, 240, 231, 0.98);
+  --pill-text: #876648;
   font-size: 0.85rem;
 }
 
 .article-link {
-  margin: 0.35rem 0 0;
-  color: #8a4b22;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  width: fit-content;
+  min-width: 11.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0.82rem 1rem;
+  border: 1px solid rgba(95, 125, 118, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--color-primary-deep);
   font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 18px rgba(88, 104, 97, 0.08);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.article-link::after {
+  content: "→";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: rgba(95, 125, 118, 0.1);
+  font-size: 0.95rem;
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.article-card:hover .article-link {
+  transform: translateY(-1px);
+  border-color: rgba(95, 125, 118, 0.24);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 24px rgba(88, 104, 97, 0.12);
+}
+
+.article-card:hover .article-link::after {
+  transform: translateX(2px);
+  background: rgba(95, 125, 118, 0.16);
+}
+
+@media (max-width: 860px) {
+  .article-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .view-shell {
+    gap: 2.5rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
+
+  .article-card {
+    padding: 1.3rem;
+    border-radius: 1.4rem;
+  }
+
+  .article-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 </style>

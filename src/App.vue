@@ -482,6 +482,14 @@ onBeforeUnmount(() => {
     padding-bottom: 4.25rem;
   }
 
+  .site-header {
+    padding-bottom: 1rem;
+  }
+
+  .site-header-bar {
+    padding: 0.65rem 0.7rem;
+  }
+
   .site-main {
     gap: 3.5rem;
   }

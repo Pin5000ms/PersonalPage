@@ -73,6 +73,10 @@ const sectionCopy = computed(() => siteCopy.projectsSection)
   .view-shell {
     gap: 2.5rem;
   }
+
+  .page-title {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
 }
 </style>
 

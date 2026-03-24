@@ -561,6 +561,32 @@ function getProjectToneClass(tone?: string) {
 }
 
 @media (max-width: 640px) {
+  .project-block {
+    gap: 1rem;
+    padding: 0.8rem;
+  }
+
+  .project-preview {
+    padding: 0.7rem;
+    min-height: 210px;
+  }
+
+  .project-preview-frame {
+    min-height: 210px;
+    padding: 0.5rem;
+  }
+
+  .project-preview-surface,
+  .project-preview-image {
+    min-height: 210px;
+  }
+
+  .project-preview-crest {
+    top: 0.85rem;
+    left: 0.85rem;
+    font-size: 0.64rem;
+  }
+
   .project-metrics,
   .project-stack {
     grid-template-columns: 1fr;
