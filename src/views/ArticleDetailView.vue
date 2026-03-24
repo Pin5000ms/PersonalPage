@@ -64,7 +64,7 @@ const formattedDate = computed(() => {
 .article-hero {
   display: grid;
   gap: 0.95rem;
-  max-width: 72ch;
+  max-width: 92ch;
 }
 
 .back-link {
@@ -137,7 +137,7 @@ const formattedDate = computed(() => {
 }
 
 .article-content {
-  max-width: 72ch;
+  max-width: 92ch;
   padding: 2rem;
   border: 1px solid var(--color-line);
   border-radius: 2rem;
