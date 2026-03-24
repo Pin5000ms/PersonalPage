@@ -1,5 +1,6 @@
-﻿import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
+import ArticleDetailView from '../views/ArticleDetailView.vue'
 import ArticlesView from '../views/ArticlesView.vue'
 import ContactView from '../views/ContactView.vue'
 import ProjectDetailView from '../views/ProjectDetailView.vue'
@@ -23,6 +24,12 @@ export const router = createRouter({
       name: 'articles',
       component: ArticlesView,
       meta: { title: 'Articles' },
+    },
+    {
+      path: '/articles/:slug',
+      name: 'article-detail',
+      component: ArticleDetailView,
+      meta: { title: 'Article' },
     },
     {
       path: '/projects',

@@ -49,16 +49,6 @@ export interface ProjectItem {
   links: LinkItem[]
 }
 
-export interface ArticleItem {
-  title: LocalizedText
-  summary: LocalizedText
-  publishDate: string
-  readingTime: LocalizedText
-  href: string
-  imageLabel: LocalizedText
-  imageTone: string
-}
-
 export interface ContactInfoItem {
   label: string
   value: string
@@ -438,42 +428,3 @@ export const projects: ProjectItem[] = [
 export function getProjectBySlug(slug: string) {
   return projects.find((project) => project.slug === slug)
 }
-
-export const articles: ArticleItem[] = [
-  {
-    title: { zh: '用 Vue 3 建立可部署到 GitHub Pages 的個人網站', en: '' },
-    summary: {
-      zh: '如何使用Vibe Coding建立個人網站。',
-      en: '',
-    },
-    publishDate: '2026-03-23',
-    readingTime: { zh: '6 分鐘閱讀', en: '6 min read' },
-    href: '#',
-    imageLabel: { zh: 'Vue + GitHub Pages 部署流程', en: '' },
-    imageTone: 'sunrise',
-  },
-  {
-    title: { zh: 'Halcon 3D 視覺', en: '' },
-    summary: {
-      zh: '如何使用Halcon量測3D點雲體積與高度量測。',
-      en: '',
-    },
-    publishDate: '2026-03-18',
-    readingTime: { zh: '15 分鐘閱讀', en: '5 min read' },
-    href: '#',
-    imageLabel: { zh: 'Halcon 3D 視覺', en: '' },
-    imageTone: 'ocean',
-  },
-  {
-    title: { zh: '如何安裝與使用AI Skill', en: '' },
-    summary: {
-      zh: '以最快方式教會你安裝Skill，讓你的AI更聰明。',
-      en: '',
-    },
-    publishDate: '2026-03-10',
-    readingTime: { zh: '1 分鐘閱讀', en: '4 min read' },
-    href: '#',
-    imageLabel: { zh: 'AI Skill', en: '' },
-    imageTone: 'forest',
-  },
-]
