@@ -124,8 +124,8 @@ export const siteCopy: SiteCopy = {
     kicker: { zh: 'Personal brand', en: 'Personal brand' },
     title: { zh: '關於我', en: 'About me' },
     description: {
-      zh: '我是誰，我在哪',
-      en: 'Who am I, Where am I?',
+      zh: '',
+      en: '',
     },
   },
   projectsPage: {
