@@ -242,8 +242,8 @@ export const contactInfo: ContactInfoItem[] = [
   },
   {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/tomchang',
-    href: 'linkedin.com/in/tomchang',
+    value: 'linkedin.com/in/tom-chang83',
+    href: 'https://www.linkedin.com/in/tom-chang83/',
   },
 ]
 
