@@ -213,11 +213,11 @@ export const profile = {
   },
   primaryLink: {
     label: { zh: '查看作品集', en: 'View projects' },
-    href: '#/projects',
+    href: '/projects',
   },
   secondaryLink: {
     label: { zh: '聯絡我', en: 'Contact me' },
-    href: '#/contact',
+    href: '/contact',
   },
   focusPoints: [
     {
@@ -316,7 +316,7 @@ export const projects: ProjectItem[] = [
       { label: { zh: '分群方法', en: 'Clustering method' }, value: { zh: 'DBSCAN', en: 'DBSCAN' } },
     ],
     links: [
-      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '/contact' },
     ],
   },
   {
@@ -350,7 +350,7 @@ export const projects: ProjectItem[] = [
       { label: { zh: '應用場景', en: 'Use case' }, value: { zh: 'PCB 視覺檢測', en: 'PCB visual inspection' } },
     ],
     links: [
-      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '/contact' },
     ],
   },
   {
@@ -384,7 +384,7 @@ export const projects: ProjectItem[] = [
       { label: { zh: '輸出結果', en: 'Outputs' }, value: { zh: '異常分數 + 瑕疵熱圖', en: 'Anomaly score + defect heatmap' } },
     ],
     links: [
-      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '/contact' },
     ],
   },
   {
@@ -418,7 +418,7 @@ export const projects: ProjectItem[] = [
       { label: { zh: '視覺化技術', en: 'Visualization' }, value: { zh: 'Three.js 3D 深度圖', en: 'Three.js 3D depth map' } },
     ],
     links: [
-      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '/contact' },
     ],
   },
   {
@@ -452,7 +452,7 @@ export const projects: ProjectItem[] = [
       { label: { zh: '延伸功能', en: 'Extended feature' }, value: { zh: '流程圖工作流建立', en: 'Flowchart workflow creation' } },
     ],
     links: [
-      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '/contact' },
     ],
   },
 ]
