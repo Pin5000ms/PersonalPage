@@ -601,17 +601,26 @@ onBeforeUnmount(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+  align-items: flex-start;
 }
 
 .project-link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  width: fit-content;
+  max-width: 100%;
   min-height: 42px;
   padding: 0.7rem 1rem;
   border-radius: 999px;
   border: 1px solid var(--color-line-strong);
   background: rgba(255, 255, 255, 0.48);
   color: var(--color-primary-deep);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  white-space: nowrap;
   text-decoration: none;
   transition:
     transform 220ms ease,
