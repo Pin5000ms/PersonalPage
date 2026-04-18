@@ -8,6 +8,8 @@ import project3Cover from '../assets/projects/project3-cover.gif'
 import project3Detail01 from '../assets/projects/project3-detail-01.gif'
 import project4Cover from '../assets/projects/project4-cover.gif'
 import project4Detail01 from '../assets/projects/project4-detail-01.gif'
+import project5Cover from '../assets/projects/project5-cover.png'
+import project5Detail01 from '../assets/projects/project5-detail-01.png'
 
 export type Locale = 'zh' | 'en'
 
@@ -346,6 +348,40 @@ export const projects: ProjectItem[] = [
       { label: { zh: '模型架構', en: 'Model architecture' }, value: { zh: 'YOLOv11', en: 'YOLOv11' } },
       { label: { zh: '偵測目標', en: 'Targets' }, value: { zh: '電容 / 電阻 / 焊點', en: 'Capacitors / Resistors / Solder joints' } },
       { label: { zh: '應用場景', en: 'Use case' }, value: { zh: 'PCB 視覺檢測', en: 'PCB visual inspection' } },
+    ],
+    links: [
+      { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
+    ],
+  },
+  {
+    slug: 'patchcore-fan-housing-defect-detection',
+    group: 'ai',
+    title: { zh: '使用 PatchCore 的風扇外殼瑕疵檢測', en: 'Fan Housing Defect Detection using PatchCore' },
+    category: { zh: '深度學習 / 瑕疵檢測', en: 'Deep Learning / Anomaly Detection' },
+    summary: {
+      zh: '我以 PatchCore 建立風扇外殼瑕疵檢測流程，使用 ImageNet 預訓練的 Wide ResNet-50 擷取正常樣本的多層特徵，並透過 patch embedding 與 memory bank 比對，找出刮傷、破裂等局部異常。',
+      en: 'Built a PatchCore-based inspection pipeline for fan housing defects by extracting multi-layer features from an ImageNet-pretrained Wide ResNet-50, then comparing patch embeddings against a memory bank of normal samples to highlight scratches, contamination, and molding defects.',
+    },
+    outcome: {
+      zh: '這個專案展示了我把 anomaly detection 方法落地到工業檢測情境的能力，不需要大量異常標註資料，也能用正常品建立可解釋的檢測流程，並以 heatmap 協助定位異常區域，方便後續人工複判與製程追蹤。',
+      en: 'This project demonstrates my ability to adapt anomaly-detection methods to industrial inspection scenarios, building an interpretable workflow from normal samples without relying on large volumes of defect labels, while producing heatmaps that support review and process tracing.',
+    },
+    coverImageSrc: project5Cover,
+    coverImageAlt: {
+      zh: '風扇外殼 PatchCore 瑕疵檢測封面',
+      en: 'PatchCore fan housing defect detection cover',
+    },
+    coverImageTone: 'ocean',
+    detailImageSrc: project5Detail01,
+    detailImageAlt: {
+      zh: 'Wide ResNet-50 與 PatchCore feature embedding 示意',
+      en: 'Wide ResNet-50 and PatchCore feature embedding diagram',
+    },
+    stack: ['Python', 'PyTorch', 'PatchCore', 'Wide ResNet-50', 'Anomaly Detection'],
+    metrics: [
+      { label: { zh: '檢測方式', en: 'Inspection mode' }, value: { zh: 'One-class 異常檢測', en: 'One-class anomaly detection' } },
+      { label: { zh: '特徵來源', en: 'Feature source' }, value: { zh: 'Wide ResNet-50 多層特徵', en: 'Wide ResNet-50 multi-layer features' } },
+      { label: { zh: '輸出結果', en: 'Outputs' }, value: { zh: '異常分數 + 瑕疵熱圖', en: 'Anomaly score + defect heatmap' } },
     ],
     links: [
       { label: { zh: '聯絡我了解更多', en: 'Contact me for more details' }, href: '#/contact' },
