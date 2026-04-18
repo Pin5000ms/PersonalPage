@@ -246,11 +246,9 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .page-shell {
-  width: min(1120px, 100%);
-  max-width: 1120px;
+  width: min(1120px, calc(100vw - 2rem));
   margin: 0 auto;
-  padding: 1.4rem 1rem 5.5rem;
-  overflow-x: hidden;
+  padding: 1.4rem 0 5.5rem;
 }
 
 .site-header {
@@ -271,7 +269,6 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 0;
   gap: 1rem;
   padding: 0.8rem 0.9rem;
   border: 1px solid var(--color-line);
@@ -289,7 +286,6 @@ onBeforeUnmount(() => {
 .site-header-actions {
   display: flex;
   align-items: center;
-  min-width: 0;
   gap: 0.75rem;
 }
 
@@ -511,7 +507,6 @@ onBeforeUnmount(() => {
 
 .site-main {
   display: grid;
-  min-width: 0;
   gap: 4.75rem;
 }
 
@@ -637,7 +632,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 920px) {
   .page-shell {
-    padding-inline: 0.6rem;
+    width: min(1120px, calc(100vw - 1.2rem));
   }
 
   .site-header-bar {
@@ -664,7 +659,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 720px) {
   .page-shell {
-    padding: 1rem 0.6rem 4.25rem;
+    padding-bottom: 4.25rem;
   }
 
   .site-header {

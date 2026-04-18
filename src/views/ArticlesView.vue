@@ -181,7 +181,6 @@ const articleCards = computed(() =>
 
 .article-card {
   display: grid;
-  min-width: 0;
   gap: 1rem;
   padding: 1.6rem;
   border: 1px solid var(--color-line);
@@ -237,7 +236,6 @@ const articleCards = computed(() =>
   font-family: var(--font-display);
   font-size: clamp(1.45rem, 3vw, 1.95rem);
   line-height: 1.28;
-  overflow-wrap: anywhere;
   transition: color 220ms ease;
 }
 
@@ -275,7 +273,6 @@ const articleCards = computed(() =>
   justify-content: space-between;
   gap: 0.85rem;
   width: fit-content;
-  max-width: 100%;
   min-width: 11.5rem;
   margin: 0.75rem 0 0;
   padding: 0.45rem 1rem;
@@ -373,11 +370,6 @@ const articleCards = computed(() =>
   .article-card {
     padding: 1.3rem;
     border-radius: 1.4rem;
-  }
-
-  .article-link {
-    width: 100%;
-    min-width: 0;
   }
 
   .article-card-top {

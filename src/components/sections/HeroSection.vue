@@ -174,7 +174,6 @@ onBeforeUnmount(() => {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
-  min-width: 0;
   margin-bottom: 0.3rem;
 }
 
@@ -193,7 +192,6 @@ onBeforeUnmount(() => {
 
 .hero-title-wrap {
   position: relative;
-  min-width: 0;
   padding: 1.35rem 1.55rem 1.65rem 1.35rem;
   border: 1px solid rgba(95, 125, 118, 0.18);
   border-radius: 22px;
@@ -397,7 +395,6 @@ onBeforeUnmount(() => {
 
   .hero-title {
     white-space: normal;
-    overflow-wrap: anywhere;
   }
 
   .hero-copy,
